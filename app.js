@@ -6,6 +6,7 @@
 // import your npm module here 
 const express = require('express');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 // just an express instens for easy use
 const app = express();
@@ -14,8 +15,23 @@ const app = express();
 const jobsRoutes = require('./api/routes/jobs');
 const applicationsRoutes = require('./api/routes/applications');
 
-// use morgan as logger
+/**
+ * setup all of your middleware
+ */
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+// cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({});
+    }
+    next();
+});
 
 // add the newly created route to the main url
 app.use('/jobs', jobsRoutes);
