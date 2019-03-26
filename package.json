@@ -4,11 +4,13 @@
   "description": "Restful API for praktil",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Martin",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
   }
 }
