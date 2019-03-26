@@ -1,0 +1,11 @@
+{
+    "env" : {
+        "database" : {
+            "mongodb" : {
+                "server" : "localhost",
+                "database" : "praktil",
+                "port" : "27017"
+            }
+        }
+    }
+}

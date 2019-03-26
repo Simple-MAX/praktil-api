@@ -7,6 +7,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+// import your files here
+const config = require('./config.json')
 
 // just an express instens for easy use
 const app = express();
@@ -14,6 +18,17 @@ const app = express();
 // import your new routes here
 const jobsRoutes = require('./api/routes/jobs');
 const applicationsRoutes = require('./api/routes/applications');
+
+mongoose.connect(`mongodb://${config.env.database.mongodb.server}:${config.env.database.mongodb.port}/${config.env.database.mongodb.database}`, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+});
+
+mongoose.connection.once('open', () => {
+    console.log('Connection has been made ...');
+}).on('error', (error) => {
+    console.log('Connection error: ', error);
+});
 
 /**
  * setup all of your middleware
