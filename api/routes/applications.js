@@ -5,31 +5,122 @@
 
 // import your npm module here 
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 
+const Application = require('../models/application');
+const Job = require('../models/job');
+
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'application were fetched'
-    });
+    Application
+        .find()
+        .exec()
+        .then(result => {
+            if (result.length >= 0) {
+                const response = {
+                    count: result.length,
+                    appliactions: result.map(doc => {
+                        return {
+                            _id: doc._id,
+                            date: doc.date,
+                            job: {
+                                jobId: doc.job,
+                                url: req.protocol + '://' + req.get('host') + '/jobs/' + doc.job
+                            },
+                            request: {
+                                description: 'Get a single application',
+                                type: 'GET',
+                                url: req.protocol + '://' + req.get('host') + req.originalUrl + '/' + doc._id
+                            }
+                        }
+                    })
+                }
+                res.status(200).json(response);
+            } else {
+                res.status(200).json({
+                    message: 'database is empty'
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
 });
 
 router.post('/', (req, res, next) => {
-    res.status(201).json({
-        message: 'application was created'
-    });
+    Job.findById(req.body.job)
+        .then(job => {
+            if (!job) {
+                return res.status(404).json({
+                    message: 'Job not found'
+                });
+            }
+            const application = new Application({
+                _id: mongoose.Types.ObjectId(),
+                job: req.body.job
+            });
+            return application.save()
+
+        }).then(result => {
+            res.status(201).json({
+                message: 'application was created',
+                application: result
+            });
+        })
+        .catch(error => {
+            res.status(500).json({
+                error: error
+            });
+        });
 });
 
 router.get('/:applicationId', (req, res, next) => {
-    const id = req.params.applicationId;
-    if (id === 'hello') {
-        res.status(200).json({
-            message: 'application info!'
+    Application.findById(req.params.applicationId)
+    .exec()
+    .then(result => {
+        if (result) {
+            res.status(200).json({
+                job: result,
+                request: {
+                    description: 'Get a list of all available appliactions',
+                    types: 'GET',
+                    url: req.protocol + '://' + req.get('host') + '/applications'
+                }
+            });
+        } else {
+            res.status(404).json({
+                message: 'not found'
+            })
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
         });
-    }
+    });
 });
 
 router.delete('/:applicationId', (req, res, next) => {
-    res.status(200).json({message: 'deleted application!'});
+    Application.remove({ _id: req.params.applicationId})
+    .exec()
+    .then(result => {
+        res.status(200).json({
+            message: 'Application deleted',
+            request: {
+                description: 'Get a list of all available appliaction',
+                type: 'GET',
+                url: req.protocol + '://' + req.get('host') + '/appliactions'
+            }
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: err
+        });
+    });
 });
 
 module.exports = router;
