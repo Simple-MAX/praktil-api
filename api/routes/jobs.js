@@ -16,6 +16,7 @@ const Job = require('../models/job');
  * HTTPS-Method : GET
  * Path : 'protocol://example.domain/resources'
  */
+
 router.get('/', (req, res, next) => {
     Job.find()
         .select("name date location category _id")
@@ -32,6 +33,7 @@ router.get('/', (req, res, next) => {
                             location: doc.location,
                             category: doc.category,
                             request: {
+                                description: 'Get a single job',
                                 type: 'GET',
                                 url: req.protocol + '://' + req.get('host') + req.originalUrl + '/' + doc._id
                             }
@@ -57,6 +59,7 @@ router.get('/', (req, res, next) => {
  * HTTPS-Method : POST
  * Path : 'protocol://example.domain/resources'
  */
+
 router.post('/', (req, res, next) => {
     const job = new Job({
         _id: new mongoose.Types.ObjectId(),
@@ -81,6 +84,12 @@ router.post('/', (req, res, next) => {
         .catch(err => console.log(err));
 });
 
+/**
+ * @description
+ * HTTPS-Method : GET
+ * Path : 'protocol://example.domain/resources/id'
+ */
+
 router.get('/:jobId', (req, res, next) => {
     const id = req.params.jobId;
     Job.findById(id)
@@ -88,7 +97,14 @@ router.get('/:jobId', (req, res, next) => {
         .then(doc => {
             console.log(doc);
             if (doc) {
-                res.status(200).json(doc);
+                res.status(200).json({
+                    job: doc,
+                    request: {
+                        description: 'Get a list of all jobs available',
+                        types: 'GET',
+                        url: req.protocol + '://' + req.get('host') + req.originalUrl 
+                    }
+                });
             } else {
                 res.status(404).json({
                     message: 'not found'
@@ -102,6 +118,12 @@ router.get('/:jobId', (req, res, next) => {
             });
         });
 });
+
+/**
+ * @description
+ * HTTPS-Method : PATCH
+ * Path : 'protocol://example.domain/resources/id'
+ */
 
 router.patch('/:jobId', (req, res, next) => {
     const id = req.params.jobId;
@@ -121,7 +143,14 @@ router.patch('/:jobId', (req, res, next) => {
         })
         .exec()
         .then(result => {
-            res.status(200).json(result);
+            res.status(200).json({
+                message: 'Job updated',
+                request: {
+                    description: 'Get a single job',
+                    type: 'GET',
+                    url: req.protocol + '://' + req.get('host') + req.originalUrl + '/' + result._id
+                }
+            });
         })
         .catch(error => {
             res.status(500).json({
@@ -130,6 +159,12 @@ router.patch('/:jobId', (req, res, next) => {
         });
 });
 
+/**
+ * @description
+ * HTTPS-Method : DELETE
+ * Path : 'protocol://example.domain/resources/id'
+ */
+
 router.delete('/:jobId', (req, res, next) => {
     const id = req.params.jobId;
     Job.remove({
@@ -137,7 +172,14 @@ router.delete('/:jobId', (req, res, next) => {
         })
         .exec()
         .then(result => {
-            res.status(200).json(result);
+            res.status(200).json({
+                message: 'Job deleted',
+                request: {
+                    description: 'Get a list of all jobs available',
+                    type: 'GET',
+                    url: req.protocol + '://' + req.get('host') + '/jobs'
+                }
+            });
         })
         .catch(err => {
             res.status(500).json({
