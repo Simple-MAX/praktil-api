@@ -14,6 +14,7 @@ const Job = require('../models/job');
 router.get('/', (req, res, next) => {
     Application
         .find()
+        .populate('job','_id name location date availability category')
         .exec()
         .then(result => {
             if (result.length >= 0) {
@@ -23,10 +24,7 @@ router.get('/', (req, res, next) => {
                         return {
                             _id: doc._id,
                             date: doc.date,
-                            job: {
-                                jobId: doc.job,
-                                url: req.protocol + '://' + req.get('host') + '/jobs/' + doc.job
-                            },
+                            job: doc.job,
                             request: {
                                 description: 'Get a single application',
                                 type: 'GET',
@@ -78,6 +76,7 @@ router.post('/', (req, res, next) => {
 
 router.get('/:applicationId', (req, res, next) => {
     Application.findById(req.params.applicationId)
+    .populate('job')
     .exec()
     .then(result => {
         if (result) {
