@@ -43,6 +43,10 @@ const jobSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
         required: false
+    },
+    jobImage: {
+        type: String,
+        required: true
     }
 });
 

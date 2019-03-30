@@ -6,7 +6,34 @@
 // import your npm module here 
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer');
+
 const router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/jobs');
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 6
+    },
+    fileFilter: fileFilter
+});
 
 const Job = require('../models/job');
 
@@ -19,7 +46,7 @@ const Job = require('../models/job');
 
 router.get('/', (req, res, next) => {
     Job.find()
-        .select("name date location category _id")
+        .select("name date location category jobImage _id")
         .exec()
         .then(docs => {
             if (docs.length >= 0) {
@@ -32,6 +59,11 @@ router.get('/', (req, res, next) => {
                             date: doc.date,
                             location: doc.location,
                             category: doc.category,
+                            image: {
+                                description: 'Get the image for the job',
+                                type: 'GET',
+                                url: req.protocol + '://' + req.get('host') + '/' + doc.jobImage
+                            },
                             request: {
                                 description: 'Get a single job',
                                 type: 'GET',
@@ -60,7 +92,7 @@ router.get('/', (req, res, next) => {
  * Path : 'protocol://example.domain/resources'
  */
 
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('jobImage'),(req, res, next) => {
     const job = new Job({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -72,7 +104,8 @@ router.post('/', (req, res, next) => {
         publish: req.publish,
         will_start_at: req.will_start_at,
         will_end_at: req.will_end_at,
-        availability: req.body.availability
+        availability: req.body.availability,
+        jobImage: req.file.path
     });
     job.save()
         .then(result => {
@@ -102,7 +135,7 @@ router.get('/:jobId', (req, res, next) => {
                     request: {
                         description: 'Get a list of all jobs available',
                         types: 'GET',
-                        url: req.protocol + '://' + req.get('host') + req.originalUrl 
+                        url: req.protocol + '://' + req.get('host') + req.originalUrl
                     }
                 });
             } else {

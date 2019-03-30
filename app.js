@@ -34,8 +34,13 @@ mongoose.connection.once('open', () => {
  * setup all of your middleware
  */
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
+
+// make the uploads folder static
+app.use('/uploads/jobs/', express.static('uploads/jobs/'));
 
 // cors
 app.use((req, res, next) => {
