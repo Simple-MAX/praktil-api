@@ -1,5 +1,6 @@
 {
     "env" : {
+        "JWT_KEY": "secret@praktil",
         "database" : {
             "mongodb" : {
                 "server" : "localhost",
