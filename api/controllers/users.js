@@ -71,7 +71,7 @@ module.exports = {
      * Path : 'protocol://example.domain/resources'
      * description : sign in a user and return a token
      */
-    login: (req, res, next) => {
+    signin: (req, res, next) => {
         User.find({
                 email: req.body.email
             })

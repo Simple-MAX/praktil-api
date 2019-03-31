@@ -26,7 +26,7 @@ router.post('/signup', controller.signup); // Router.Method(path, middleware, co
  * description : sign in a user and return a token
  */
 
-router.post('/login', controller.login); // Router.Method(path, middleware, controller.function)
+router.post('/signin', controller.signin); // Router.Method(path, middleware, controller.function)
 
 /**
  * @description
