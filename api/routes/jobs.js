@@ -11,10 +11,10 @@ const multer = require('multer');
 const router = express.Router();
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, './uploads/jobs');
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, new Date().toISOString() + file.originalname);
     }
 });
@@ -36,6 +36,7 @@ const upload = multer({
 });
 
 const Job = require('../models/job');
+const Authenticate = require('../middleware/authenticate');
 
 
 /**
@@ -92,29 +93,31 @@ router.get('/', (req, res, next) => {
  * Path : 'protocol://example.domain/resources'
  */
 
-router.post('/', upload.single('jobImage'),(req, res, next) => {
+router.post('/', Authenticate, upload.single('jobImage'), (req, res, next) => {
     const job = new Job({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        description: req.description,
-        location: req.location,
-        contact_info: req.contact_info,
-        category: req.category,
-        date: req.date,
-        publish: req.publish,
-        will_start_at: req.will_start_at,
-        will_end_at: req.will_end_at,
+        description: req.body.description,
+        location: req.body.location,
+        contact_info: req.body.contact_info,
+        category: req.body.category,
+        publish: req.body.publish,
+        will_start_at: req.body.will_start_at,
+        will_end_at: req.body.will_end_at,
         availability: req.body.availability,
         jobImage: req.file.path
     });
     job.save()
         .then(result => {
-            console.log(result);
             res.status(201).json({
-                createdJob: job
+                createdJob: result
             });
         })
-        .catch(err => console.log(err));
+        .catch(error => {
+            res.status(500).json({
+                error: error
+            });
+        });
 });
 
 /**
@@ -128,7 +131,6 @@ router.get('/:jobId', (req, res, next) => {
     Job.findById(id)
         .exec()
         .then(doc => {
-            console.log(doc);
             if (doc) {
                 res.status(200).json({
                     job: doc,
@@ -145,7 +147,6 @@ router.get('/:jobId', (req, res, next) => {
             }
         })
         .catch(err => {
-            console.log(err);
             res.status(500).json({
                 error: err
             });
@@ -158,7 +159,7 @@ router.get('/:jobId', (req, res, next) => {
  * Path : 'protocol://example.domain/resources/id'
  */
 
-router.patch('/:jobId', (req, res, next) => {
+router.patch('/:jobId', Authenticate, (req, res, next) => {
     const id = req.params.jobId;
     // create a list of incoming update
     const updateOPS = {};
@@ -198,7 +199,7 @@ router.patch('/:jobId', (req, res, next) => {
  * Path : 'protocol://example.domain/resources/id'
  */
 
-router.delete('/:jobId', (req, res, next) => {
+router.delete('/:jobId', Authenticate, (req, res, next) => {
     const id = req.params.jobId;
     Job.remove({
             _id: id

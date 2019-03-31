@@ -46,7 +46,7 @@ const jobSchema = mongoose.Schema({
     },
     jobImage: {
         type: String,
-        required: true
+        required: false
     }
 });
 

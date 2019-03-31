@@ -10,8 +10,9 @@ const router = express.Router();
 
 const Application = require('../models/application');
 const Job = require('../models/job');
+const Authenticate = require('../middleware/authenticate');
 
-router.get('/', (req, res, next) => {
+router.get('/', Authenticate,(req, res, next) => {
     Application
         .find()
         .populate('job','_id name location date availability category')
@@ -47,7 +48,7 @@ router.get('/', (req, res, next) => {
         });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', Authenticate,(req, res, next) => {
     Job.findById(req.body.job)
         .then(job => {
             if (!job) {
@@ -74,7 +75,7 @@ router.post('/', (req, res, next) => {
         });
 });
 
-router.get('/:applicationId', (req, res, next) => {
+router.get('/:applicationId', Authenticate,(req, res, next) => {
     Application.findById(req.params.applicationId)
     .populate('job')
     .exec()
@@ -102,7 +103,7 @@ router.get('/:applicationId', (req, res, next) => {
     });
 });
 
-router.delete('/:applicationId', (req, res, next) => {
+router.delete('/:applicationId', Authenticate,(req, res, next) => {
     Application.remove({ _id: req.params.applicationId})
     .exec()
     .then(result => {
