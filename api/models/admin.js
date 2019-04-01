@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const adminSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     email: {
         type: String,
@@ -16,22 +16,10 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    isCompany: {
-        type: Boolean,
-        default: false
-    },
-    isTrainee: {
-        type: Boolean,
-        default: true
-    },
     date: {
         type: Date,
         default: Date.now
     }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Admin', adminSchema);

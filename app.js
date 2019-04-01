@@ -19,6 +19,7 @@ const app = express();
 const jobsRoutes = require('./api/routes/jobs');
 const applicationsRoutes = require('./api/routes/applications');
 const usersRoutes = require('./api/routes/users');
+const adminRoutes = require('./api/routes/admins');
 
 mongoose.connect(`mongodb://${config.env.database.mongodb.server}:${config.env.database.mongodb.port}/${config.env.database.mongodb.database}`, {
     useNewUrlParser: true,
@@ -57,7 +58,8 @@ app.use((req, res, next) => {
 // add the newly created route to the main url
 app.use('/jobs', jobsRoutes);
 app.use('/applications', applicationsRoutes);
-app.use('/users', usersRoutes);
+app.use('/auth/users', usersRoutes);
+app.use('/auth/admins', adminRoutes);
 
 // that everything is fine
 app.use((req, res, next) => {
