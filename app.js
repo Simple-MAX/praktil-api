@@ -21,6 +21,7 @@ const applicationsRoutes = require('./api/routes/applications');
 const usersRoutes = require('./api/routes/users');
 const adminRoutes = require('./api/routes/admins');
 const companyRoutes = require('./api/routes/companies');
+const profileRoutes = require('./api/routes/profiles'); 
 
 mongoose.connect(`mongodb://${config.env.database.mongodb.server}:${config.env.database.mongodb.port}/${config.env.database.mongodb.database}`, {
     useNewUrlParser: true,
@@ -44,6 +45,7 @@ app.use(bodyParser.json());
 
 // make the uploads folder static
 app.use('/uploads/jobs/', express.static('uploads/jobs/'));
+app.use('/uploads/profiles/', express.static('uploads/profiles/'));
 
 // cors
 app.use((req, res, next) => {
@@ -62,6 +64,7 @@ app.use('/applications', applicationsRoutes);
 app.use('/auth/users', usersRoutes);
 app.use('/auth/admins', adminRoutes);
 app.use('/auth/companies', companyRoutes);
+app.use('/profiles', profileRoutes);
 
 // that everything is fine
 app.use((req, res, next) => {

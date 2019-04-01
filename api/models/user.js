@@ -16,18 +16,6 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    isCompany: {
-        type: Boolean,
-        default: false
-    },
-    isTrainee: {
-        type: Boolean,
-        default: true
-    },
     date: {
         type: Date,
         default: Date.now
