@@ -280,6 +280,129 @@ module.exports = {
 
     /**
      * @description
+     * HTTPS-Method : PATCH
+     * Path : 'protocol://example.domain/resources/id'
+     * description : update a single records
+     */
+    updateUserProfile: (req, res, next) => {
+        const id = req.params.userId;
+        // create a list of incoming update
+        const updateOPS = {};
+
+        // loop the list and extract the element for update 
+        for (const ops of req.body) {
+            updateOPS[ops.propName] = ops.value;
+        }
+
+        // update the job object in the datebase
+        Profile.update({
+                _id: id
+            }, {
+                $set: updateOPS
+            })
+            .exec()
+            .then(result => {
+                res.status(200).json({
+                    message: 'profile was updated',
+                    result: result,
+                    request: {
+                        description: 'Get a single profile',
+                        type: 'GET',
+                        url: req.protocol + '://' + req.get('host') + '/user-type'
+                    }
+                });
+            })
+            .catch(error => {
+                res.status(500).json({
+                    error: error
+                });
+            });
+    },
+
+    /**
+     * @description
+     * HTTPS-Method : PATCH
+     * Path : 'protocol://example.domain/resources/id'
+     * description : update a single records
+     */
+    updateAdminProfile: (req, res, next) => {
+        const id = req.params.adminId;
+        // create a list of incoming update
+        const updateOPS = {};
+
+        // loop the list and extract the element for update 
+        for (const ops of req.body) {
+            updateOPS[ops.propName] = ops.value;
+        }
+
+        // update the job object in the datebase
+        Profile.update({
+                _id: id
+            }, {
+                $set: updateOPS
+            })
+            .exec()
+            .then(result => {
+                res.status(200).json({
+                    message: 'profile was updated',
+                    result: result,
+                    request: {
+                        description: 'Get a single profile',
+                        type: 'GET',
+                        url: req.protocol + '://' + req.get('host') + '/user-type'
+                    }
+                });
+            })
+            .catch(error => {
+                res.status(500).json({
+                    error: error
+                });
+            });
+    },
+
+    /**
+     * @description
+     * HTTPS-Method : PATCH
+     * Path : 'protocol://example.domain/resources/id'
+     * description : update a single records
+     */
+    updateCompanyProfile: (req, res, next) => {
+        const id = req.params.companyId;
+        // create a list of incoming update
+        const updateOPS = {};
+
+        // loop the list and extract the element for update 
+        for (const ops of req.body) {
+            updateOPS[ops.propName] = ops.value;
+        }
+
+        // update the job object in the datebase
+        Profile.update({
+                _id: id
+            }, {
+                $set: updateOPS
+            })
+            .exec()
+            .then(result => {
+                res.status(200).json({
+                    message: 'profile was updated',
+                    result: result,
+                    request: {
+                        description: 'Get a single profile',
+                        type: 'GET',
+                        url: req.protocol + '://' + req.get('host') + '/user-type'
+                    }
+                });
+            })
+            .catch(error => {
+                res.status(500).json({
+                    error: error
+                });
+            });
+    },
+
+    /**
+     * @description
      * HTTPS-Method : GET
      * Path : 'protocol://example.domain/resources/id'
      * description : return a single records
@@ -442,67 +565,67 @@ module.exports = {
      */
     deleteUserProfile: (req, res, next) => {
         Profile.remove({
-            _id: req.params.userId
-        })
-        .exec()
-        .then(result => {
-            res.status(200).json({
-                message: 'a user profile was deleted',
-                request: {
-                    description: 'Get a list of all profile appliaction',
-                    type: 'GET',
-                    url: req.protocol + '://' + req.get('host') + '/profiles/users'
-                }
+                _id: req.params.userId
+            })
+            .exec()
+            .then(result => {
+                res.status(200).json({
+                    message: 'a user profile was deleted',
+                    request: {
+                        description: 'Get a list of all profile appliaction',
+                        type: 'GET',
+                        url: req.protocol + '://' + req.get('host') + '/profiles/users'
+                    }
+                });
+            })
+            .catch(err => {
+                res.status(500).json({
+                    error: err
+                });
             });
-        })
-        .catch(err => {
-            res.status(500).json({
-                error: err
-            });
-        });
     },
 
     deleteAdminProfile: (req, res, next) => {
         Profile.remove({
-            _id: req.params.adminId
-        })
-        .exec()
-        .then(result => {
-            res.status(200).json({
-                message: 'a user profile was deleted',
-                request: {
-                    description: 'Get a list of all profile appliaction',
-                    type: 'GET',
-                    url: req.protocol + '://' + req.get('host') + '/profiles/users'
-                }
+                _id: req.params.adminId
+            })
+            .exec()
+            .then(result => {
+                res.status(200).json({
+                    message: 'a user profile was deleted',
+                    request: {
+                        description: 'Get a list of all profile appliaction',
+                        type: 'GET',
+                        url: req.protocol + '://' + req.get('host') + '/profiles/users'
+                    }
+                });
+            })
+            .catch(err => {
+                res.status(500).json({
+                    error: err
+                });
             });
-        })
-        .catch(err => {
-            res.status(500).json({
-                error: err
-            });
-        });
     },
 
     deleteCompanyProfile: (req, res, next) => {
         Profile.remove({
-            _id: req.params.companyId
-        })
-        .exec()
-        .then(result => {
-            res.status(200).json({
-                message: 'a user profile was deleted',
-                request: {
-                    description: 'Get a list of all profile appliaction',
-                    type: 'GET',
-                    url: req.protocol + '://' + req.get('host') + '/profiles/users'
-                }
+                _id: req.params.companyId
+            })
+            .exec()
+            .then(result => {
+                res.status(200).json({
+                    message: 'a user profile was deleted',
+                    request: {
+                        description: 'Get a list of all profile appliaction',
+                        type: 'GET',
+                        url: req.protocol + '://' + req.get('host') + '/profiles/users'
+                    }
+                });
+            })
+            .catch(err => {
+                res.status(500).json({
+                    error: err
+                });
             });
-        })
-        .catch(err => {
-            res.status(500).json({
-                error: err
-            });
-        });
     }
 };
