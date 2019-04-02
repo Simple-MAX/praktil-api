@@ -440,73 +440,69 @@ module.exports = {
      * Path : 'protocol://example.domain/resources/id'
      * description : remove a single records
      */
-    delete: (req, res, next) => {
-        if (req.body.userId) {
-            User.remove({
-                    _id: req.body.userId
-                })
-                .exec()
-                .then(result => {
-                    res.status(200).json({
-                        message: 'user profile was deleted',
-                        request: {
-                            description: 'Get a list of all available profiles',
-                            type: 'GET',
-                            url: req.protocol + '://' + req.get('host') + '/profiles'
-                        }
-                    });
-                })
-                .catch(err => {
-                    res.status(500).json({
-                        error: err
-                    });
-                });
-        }
-        if (req.body.adminId) {
-            Admin.remove({
-                    _id: req.body.adminId
-                })
-                .exec()
-                .then(result => {
-                    res.status(200).json({
-                        message: 'user profile was deleted',
-                        request: {
-                            description: 'Get a list of all available profiles',
-                            type: 'GET',
-                            url: req.protocol + '://' + req.get('host') + '/profiles'
-                        }
-                    });
-                })
-                .catch(err => {
-                    res.status(500).json({
-                        error: err
-                    });
-                });
-        }
-        if (req.body.companyId) {
-            Company.remove({
-                    _id: req.body.companyId
-                })
-                .exec()
-                .then(result => {
-                    res.status(200).json({
-                        message: 'user profile was deleted',
-                        request: {
-                            description: 'Get a list of all available profiles',
-                            type: 'GET',
-                            url: req.protocol + '://' + req.get('host') + '/profiles'
-                        }
-                    });
-                })
-                .catch(err => {
-                    res.status(500).json({
-                        error: err
-                    });
-                });
-        } else {
-            res.status(422).json({
-                message: 'invalid id'
+    deleteUserProfile: (req, res, next) => {
+        Profile.remove({
+            _id: req.params.userId
+        })
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'a user profile was deleted',
+                request: {
+                    description: 'Get a list of all profile appliaction',
+                    type: 'GET',
+                    url: req.protocol + '://' + req.get('host') + '/profiles/users'
+                }
             });
-        }
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
+    },
+
+    deleteAdminProfile: (req, res, next) => {
+        Profile.remove({
+            _id: req.params.adminId
+        })
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'a user profile was deleted',
+                request: {
+                    description: 'Get a list of all profile appliaction',
+                    type: 'GET',
+                    url: req.protocol + '://' + req.get('host') + '/profiles/users'
+                }
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
+    },
+
+    deleteCompanyProfile: (req, res, next) => {
+        Profile.remove({
+            _id: req.params.companyId
+        })
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'a user profile was deleted',
+                request: {
+                    description: 'Get a list of all profile appliaction',
+                    type: 'GET',
+                    url: req.protocol + '://' + req.get('host') + '/profiles/users'
+                }
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
     }
 };

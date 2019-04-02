@@ -139,6 +139,22 @@ router.get('/company/:companyId', Authenticate, controller.showCompanyProfile); 
  * Path : 'protocol://example.domain/resources/id'
  */
 
-router.delete('/:profileId', Authenticate, controller.delete); // Router.Method(path, middleware, controller.function)
+router.delete('/user/:userId', Authenticate, controller.deleteUserProfile); // Router.Method(path, middleware, controller.function)
+
+/**
+ * @description
+ * HTTPS-Method : DELETE
+ * Path : 'protocol://example.domain/resources/id'
+ */
+
+router.delete('/admin/:adminId', Authenticate, controller.deleteAdminProfile); // Router.Method(path, middleware, controller.function)
+
+/**
+ * @description
+ * HTTPS-Method : DELETE
+ * Path : 'protocol://example.domain/resources/id'
+ */
+
+router.delete('/company/:companyId', Authenticate, controller.deleteCompanyProfile); // Router.Method(path, middleware, controller.function)
 
 module.exports = router;
