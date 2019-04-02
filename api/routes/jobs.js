@@ -48,7 +48,7 @@ const controller = require('../controllers/jobs');
  * Path : 'protocol://example.domain/resources'
  */
 
-router.get('/', controller.list); // Router.Method(path, middleware, controller.function)
+router.get('/list', controller.list); // Router.Method(path, middleware, controller.function)
 
 /**
  * @description
@@ -65,6 +65,14 @@ router.post('/', Authenticate, upload.single('jobImage'), controller.create); //
  */
 
 router.get('/:jobId', controller.show); // Router.Method(path, middleware, controller.function)
+
+/**
+ * @description
+ * HTTPS-Method : GET
+ * Path : 'protocol://example.domain/resources/?query='
+ */
+
+router.get('/', controller.search); // Router.Method(path, middleware, controller.function)
 
 /**
  * @description

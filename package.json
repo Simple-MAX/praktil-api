@@ -18,5 +18,8 @@
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "nodemon": "^1.18.10"
+  },
+  "devDependencies": {
+    "locus": "^2.0.1"
   }
 }

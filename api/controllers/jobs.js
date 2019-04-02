@@ -18,6 +18,7 @@ module.exports = {
     list: (req, res, next) => {
         Job.find()
             .select("name date location category jobImage _id")
+            .populate('Profile', 'org_number website image company_name _id')
             .exec()
             .then(docs => {
                 if (docs.length >= 0) {
@@ -67,6 +68,7 @@ module.exports = {
     create: (req, res, next) => {
         const job = new Job({
             _id: new mongoose.Types.ObjectId(),
+            profile_id: req.body.profile_id,
             name: req.body.name,
             description: req.body.description,
             location: req.body.location,
@@ -100,6 +102,7 @@ module.exports = {
     show: (req, res, next) => {
         const id = req.params.jobId;
         Job.findById(id)
+            .populate('Profile', 'org_number website image company_name _id')
             .exec()
             .then(doc => {
                 if (doc) {
@@ -122,6 +125,102 @@ module.exports = {
                     error: err
                 });
             });
+    },
+
+    /**
+     * @description
+     * HTTPS-Method : GET
+     * Path : 'protocol://example.domain/resources/id'
+     * description : return a single records
+     */
+    search: (req, res, next) => {
+        const query = req.query
+        if (query.name) {
+            Job.find({
+                    name: query.name
+                }).populate('Profile', 'org_number website image company_name _id')
+                .exec()
+                .then(result => {
+                    res.status(200).json({
+                        count: result.length,
+                        query: query.name,
+                        result: result
+                    });
+                })
+                .catch(error => {
+                    res.status(500).json({
+                        error: error
+                    });
+                });
+        } else if (query.location) {
+            Job.find({
+                    location: query.location
+                })
+                .exec().populate('Profile', 'org_number website image company_name _id')
+                .then(result => {
+                    res.status(200).json({
+                        count: result.length,
+                        query: query.location,
+                        result: result
+                    });
+                })
+                .catch(error => {
+                    res.status(500).json({
+                        error: error
+                    });
+                });
+        } else if (query.category) {
+            Job.find({
+                    category: query.category
+                })
+                .exec().populate('Profile', 'org_number website image company_name _id')
+                .then(result => {
+                    res.status(200).json({
+                        count: result.length,
+                        query: query.category,
+                        result: result
+                    });
+                })
+                .catch(error => {
+                    res.status(500).json({
+                        error: error
+                    });
+                });
+        } else if (query.availability) {
+            Job.find({
+                    availability: query.availability
+                }).populate('Profile', 'org_number website image company_name _id')
+                .exec()
+                .then(result => {
+                    res.status(200).json({
+                        count: result.length,
+                        query: query.availability,
+                        result: result
+                    });
+                })
+                .catch(error => {
+                    res.status(500).json({
+                        error: error
+                    });
+                });
+        } else if (query.date) {
+            Job.find({
+                    availability: query.date
+                }).populate('Profile', 'org_number website image company_name _id')
+                .exec()
+                .then(result => {
+                    res.status(200).json({
+                        count: result.length,
+                        query: query.date,
+                        result: result
+                    });
+                })
+                .catch(error => {
+                    res.status(500).json({
+                        error: error
+                    });
+                });
+        }
     },
 
     /**

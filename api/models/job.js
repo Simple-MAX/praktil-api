@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const jobSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    profile_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Profile',
+        required: true
+    },
     name: {
         type: String,
         required: true
