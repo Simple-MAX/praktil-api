@@ -115,7 +115,23 @@ router.post('/user', Authenticate, upload.fields([{
  * Path : 'protocol://example.domain/resources/id'
  */
 
-router.get('/', Authenticate, controller.show); // Router.Method(path, middleware, controller.function)
+router.get('/user/:userId', Authenticate, controller.showUserProfile); // Router.Method(path, middleware, controller.function)
+
+/**
+ * @description
+ * HTTPS-Method : GET
+ * Path : 'protocol://example.domain/resources/id'
+ */
+
+router.get('/admin/:adminId', Authenticate, controller.showAdminProfile); // Router.Method(path, middleware, controller.function)
+
+/**
+ * @description
+ * HTTPS-Method : GET
+ * Path : 'protocol://example.domain/resources/id'
+ */
+
+router.get('/company/:companyId', Authenticate, controller.showCompanyProfile); // Router.Method(path, middleware, controller.function)
 
 /**
  * @description

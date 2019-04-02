@@ -121,7 +121,13 @@ module.exports = {
                             return {
                                 _id: doc._id,
                                 date: doc.date,
-                                company: doc.company,
+                                company_name: doc.company_name,
+                                location: doc.location,
+                                description: doc.description,
+                                website: doc.website,
+                                org_number: doc.org_number,
+                                image: req.protocol + '://' + req.get('host') + '/' + doc.image,
+
                                 request: {
                                     description: 'Get a single profile',
                                     type: 'GET',
@@ -235,7 +241,7 @@ module.exports = {
      * description : create a single records
      */
     createACompanyProfile: (req, res, next) => {
-        Company.findById(req.body.company_id)
+        Profile.findById(req.body.company_id)
             .then(company => {
                 if (!company) {
                     return res.status(404).json({
@@ -278,47 +284,89 @@ module.exports = {
      * Path : 'protocol://example.domain/resources/id'
      * description : return a single records
      */
-    show: (req, res, next) => {
-        if (req.body.userId) {
-            User.findById(req.body.userId)
+    showUserProfile: (req, res, next) => {
+        User.find({
+                _id
+            })
             .populate('user')
             .exec()
             .then(result => {
                 if (result) {
-                    res.status(200).json({
-                        job: result,
-                        request: {
-                            description: 'Get a list of all available appliactions',
-                            types: 'GET',
-                            url: req.protocol + '://' + req.get('host') + '/applications'
-                        }
-                    });
+                    const response = {
+                        profile: result.map(doc => {
+                            return {
+                                _id: doc._id,
+                                user_id: doc.user_id,
+                                name: doc.name,
+                                school: doc.school,
+                                education: doc.education,
+                                location: doc.location,
+                                phone: doc.phone,
+                                birthday: doc.birthday,
+                                notifications: doc.notifications,
+                                facebook: doc.facebook,
+                                instagram: doc.instagram,
+                                linkedin: doc.linkedin,
+                                image: req.protocol + '://' + req.get('host') + '/' + doc.image,
+                                cv: req.protocol + '://' + req.get('host') + '/' + doc.cv,
+                                letter: req.protocol + '://' + req.get('host') + '/' + doc.letter,
+                                createdAt: doc.createdAt,
+                                updatedAt: doc.updatedAt,
+                                branches: doc.branches,
+                                request: {
+                                    description: 'Get a list of all available profiles',
+                                    types: 'GET',
+                                    url: req.protocol + '://' + req.get('host') + '/profiles'
+                                }
+                            }
+                        })
+                    }
+                    res.status(200).json(response);
                 } else {
                     res.status(404).json({
                         message: 'not found'
                     })
                 }
             })
-            .catch(err => {
-                console.log(err);
+            .catch(error => {
                 res.status(500).json({
-                    error: err
+                    error: error
                 });
             });
-        } if (req.body.adminId) {
-            Admin.findById(req.body.adminId)
+    },
+
+    /**
+     * @description
+     * HTTPS-Method : GET
+     * Path : 'protocol://example.domain/resources/id'
+     * description : return a single records
+     */
+    showAdminProfile: (req, res, next) => {
+        Admin.find({
+                _id: req.params.adminId
+            })
             .populate('admin')
             .exec()
             .then(result => {
                 if (result) {
-                    res.status(200).json({
-                        job: result,
-                        request: {
-                            description: 'Get a list of all available appliactions',
-                            types: 'GET',
-                            url: req.protocol + '://' + req.get('host') + '/applications'
-                        }
-                    });
+                    const response = {
+                        profile: result.map(doc => {
+                            return {
+                                _id: doc._id,
+                                admin_id: doc.admin_id,
+                                name: doc.admin_name,
+                                image: req.protocol + '://' + req.get('host') + '/' + doc.image,
+                                createdAt: doc.createdAt,
+                                updatedAt: doc.updatedAt,
+                                request: {
+                                    description: 'Get a list of all available profiles',
+                                    types: 'GET',
+                                    url: req.protocol + '://' + req.get('host') + '/profiles'
+                                }
+                            }
+                        })
+                    }
+                    res.status(200).json(response);
                 } else {
                     res.status(404).json({
                         message: 'not found'
@@ -331,39 +379,59 @@ module.exports = {
                     error: err
                 });
             });
-        } if (req.body.companyId) {
-            Company.findById(req.body.companyId)
+    },
+
+    /**
+     * @description
+     * HTTPS-Method : GET
+     * Path : 'protocol://example.domain/resources/id'
+     * description : return a single records
+     */
+    showCompanyProfile: (req, res, next) => {
+        Profile.find({
+                _id: req.params.companyId
+            })
             .populate('company')
             .exec()
             .then(result => {
                 if (result) {
-                    res.status(200).json({
-                        job: result,
-                        request: {
-                            description: 'Get a list of all available appliactions',
-                            types: 'GET',
-                            url: req.protocol + '://' + req.get('host') + '/applications'
-                        }
-                    });
+                    const response = {
+                        profile: result.map(doc => {
+                            return {
+                                _id: doc._id,
+                                company_id: doc.company_id,
+                                company_name: doc.company_name,
+                                location: doc.location,
+                                phone: doc.phone,
+                                facebook: doc.facebook,
+                                instagram: doc.instagram,
+                                linkedin: doc.linkedin,
+                                description: doc.description,
+                                website: doc.website,
+                                org_number: doc.org_number,
+                                image: req.protocol + '://' + req.get('host') + '/' + doc.image,
+                                createdAt: doc.createdAt,
+                                updatedAt: doc.updatedAt,
+                                request: {
+                                    description: 'Get a list of all available profiles',
+                                    types: 'GET',
+                                    url: req.protocol + '://' + req.get('host') + '/profiles'
+                                }
+                            }
+                        })
+                    }
+                    res.status(200).json(response);
                 } else {
                     res.status(404).json({
                         message: 'not found'
                     })
                 }
             })
-            .catch(err => {
-                console.log(err);
+            .catch(error => {
                 res.status(500).json({
-                    error: err
+                    error: error
                 });
             });
-        }
-         else {
-            res.status(422).json({
-                message: 'invalid id'
-            });
-        }
-        
     },
 
     /**
@@ -375,66 +443,67 @@ module.exports = {
     delete: (req, res, next) => {
         if (req.body.userId) {
             User.remove({
-                _id: req.body.userId
-            })
-            .exec()
-            .then(result => {
-                res.status(200).json({
-                    message: 'user profile was deleted',
-                    request: {
-                        description: 'Get a list of all available profiles',
-                        type: 'GET',
-                        url: req.protocol + '://' + req.get('host') + '/profiles'
-                    }
+                    _id: req.body.userId
+                })
+                .exec()
+                .then(result => {
+                    res.status(200).json({
+                        message: 'user profile was deleted',
+                        request: {
+                            description: 'Get a list of all available profiles',
+                            type: 'GET',
+                            url: req.protocol + '://' + req.get('host') + '/profiles'
+                        }
+                    });
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        error: err
+                    });
                 });
-            })
-            .catch(err => {
-                res.status(500).json({
-                    error: err
-                });
-            });
-        } if (req.body.adminId) {
-            Admin.remove({
-                _id: req.body.adminId
-            })
-            .exec()
-            .then(result => {
-                res.status(200).json({
-                    message: 'user profile was deleted',
-                    request: {
-                        description: 'Get a list of all available profiles',
-                        type: 'GET',
-                        url: req.protocol + '://' + req.get('host') + '/profiles'
-                    }
-                });
-            })
-            .catch(err => {
-                res.status(500).json({
-                    error: err
-                });
-            });
-        } if (req.body.companyId) {
-            Company.remove({
-                _id: req.body.companyId
-            })
-            .exec()
-            .then(result => {
-                res.status(200).json({
-                    message: 'user profile was deleted',
-                    request: {
-                        description: 'Get a list of all available profiles',
-                        type: 'GET',
-                        url: req.protocol + '://' + req.get('host') + '/profiles'
-                    }
-                });
-            })
-            .catch(err => {
-                res.status(500).json({
-                    error: err
-                });
-            });
         }
-         else {
+        if (req.body.adminId) {
+            Admin.remove({
+                    _id: req.body.adminId
+                })
+                .exec()
+                .then(result => {
+                    res.status(200).json({
+                        message: 'user profile was deleted',
+                        request: {
+                            description: 'Get a list of all available profiles',
+                            type: 'GET',
+                            url: req.protocol + '://' + req.get('host') + '/profiles'
+                        }
+                    });
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+        }
+        if (req.body.companyId) {
+            Company.remove({
+                    _id: req.body.companyId
+                })
+                .exec()
+                .then(result => {
+                    res.status(200).json({
+                        message: 'user profile was deleted',
+                        request: {
+                            description: 'Get a list of all available profiles',
+                            type: 'GET',
+                            url: req.protocol + '://' + req.get('host') + '/profiles'
+                        }
+                    });
+                })
+                .catch(err => {
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+        } else {
             res.status(422).json({
                 message: 'invalid id'
             });
