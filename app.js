@@ -23,7 +23,7 @@ const adminRoutes = require('./api/routes/admins');
 const companyRoutes = require('./api/routes/companies');
 const profileRoutes = require('./api/routes/profiles'); 
 
-mongoose.connect(`mongodb://${config.env.database.mongodb.server}:${config.env.database.mongodb.port}/${config.env.database.mongodb.database}`, {
+mongoose.connect(`mongodb://${config.connection}`, {
     useNewUrlParser: true,
     useCreateIndex: true
 });

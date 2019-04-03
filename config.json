@@ -1,4 +1,5 @@
 {
+    "connection":"ds141815.mlab.com:41815/heroku_v142fhx1",
     "env" : {
         "JWT_KEY": "secret@praktil",
         "database" : {
