@@ -1,4 +1,6 @@
 {
+    "dbUsername": "Praktil123",
+    "dbPass":"Praktil123",
     "connection":"ds141815.mlab.com:41815/heroku_v142fhx1",
     "env" : {
         "JWT_KEY": "secret@praktil",

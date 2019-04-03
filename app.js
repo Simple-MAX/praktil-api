@@ -23,7 +23,7 @@ const adminRoutes = require('./api/routes/admins');
 const companyRoutes = require('./api/routes/companies');
 const profileRoutes = require('./api/routes/profiles'); 
 
-mongoose.connect(`mongodb://${config.connection}`, {
+mongoose.connect(`mongodb://${config.dbUsername}:${config.dbPass}@ds141815.mlab.com:41815/heroku_v142fhx1`, {
     useNewUrlParser: true,
     useCreateIndex: true
 });
