@@ -113,8 +113,8 @@ Close endpoints require Authentication.
 * payload : form-data
 ``` json
 [
-  {"propName":"name","value","name2"},
-  {"propName":"location","value","NYC"},
+  {"propName":"name","value":"name2"},
+  {"propName":"location","value":"NYC"},
 ]
 ```
 ** **
