@@ -10,7 +10,7 @@ const http = require('http');
 const app = require('./app');
 
 // add the port to the system env
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 // create the server
 const server = http.createServer(app);
