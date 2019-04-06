@@ -1,93 +1,23 @@
 /**
  * author: https://github.com/Simple-MAX
- * Praktil API - app.js
+ * Praktil MVC - app.js
  */
 
-// import your npm module here 
 const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-// import your files here
-const config = require('./config.json')
+const indexRouter = require('./routes/index');
 
-// just an express instens for easy use
 const app = express();
 
-// import your new routes here
-const jobsRoutes = require('./api/routes/jobs');
-const applicationsRoutes = require('./api/routes/applications');
-const usersRoutes = require('./api/routes/users');
-const adminRoutes = require('./api/routes/admins');
-const companyRoutes = require('./api/routes/companies');
-const profileRoutes = require('./api/routes/profiles'); 
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(`mongodb://${config.dbUsername}:${config.dbPass}@ds141815.mlab.com:41815/heroku_v142fhx1`, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-});
-
-mongoose.connection.once('open', () => {
-    console.log('Connection has been made ...');
-}).on('error', (error) => {
-    console.log('Connection error: ', error);
-});
-
-/**
- * setup all of your middleware
- */
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
-// make the uploads folder static
-app.use('/uploads/jobs/', express.static('uploads/jobs/'));
-app.use('/uploads/profiles/', express.static('uploads/profiles/'));
-
-// cors
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-        return res.status(200).json({});
-    }
-    next();
-});
-
-// add the newly created route to the main url
-app.use('/jobs', jobsRoutes);
-app.use('/applications', applicationsRoutes);
-app.use('/auth/users', usersRoutes);
-app.use('/auth/admins', adminRoutes);
-app.use('/auth/companies', companyRoutes);
-app.use('/profiles', profileRoutes);
-
-// that everything is fine
-app.use((req, res, next) => {
-    res.status(200).json({
-        message: 'It works!'
-    });
-});
-
-// send an error fon not found path
-app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-    next(error);
-});
-
-// send an error object if we had an server failure
-app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({
-        error: {
-            message: error.message
-        }
-    });
-});
+app.use('/', indexRouter);
 
 module.exports = app;
