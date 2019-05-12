@@ -1,0 +1,271 @@
+<div data-spy="scroll" data-target="#scroll-menu" data-offset="65" class="dashboard">
+    <!-- ===================================================
+        Loading Transition
+    ==================================================== -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- header-area-start -->
+    <header class="header-3">
+        <div class="h3-header-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-8">
+                        <div class="h1-logo">
+                            <a href="index.html">
+                                <img src="/images/allt/Logo_Praktil.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-9 col-sm-6 col-12 text-right praktil-menu">
+                        <div class="h1hba-get-quote menu-praktil">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                        aria-controls="home" aria-selected="true">{{ name }} <i
+                                            class="fas fa-user"></i></a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid nav-sub">
+                <div class="col-lg-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="menu d-none d-lg-block menu-praktil">
+                                <nav>
+                                    <ul id="menu">
+                                        <li><a href="for-foretag.html"><i class="far fa-save"></i> Sparade
+                                                praktikplatser</a></li>
+                                        <li><a href="#"><i class="fas fa-cog"></i> Redigera Uppgifter</a></li>
+
+                                    </ul>
+                                    <div class="h1hba-get-quote menu-praktil sub-links">
+                                        <a class="link hvr-bs Praktil-link" href="/authentication/signout"><i class="fas fa-sign-out-alt"></i>
+                                            Logga ut</a>
+                                    </div>
+                                </nav>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </header>
+    {{> messages }}
+    <!-- header-area-end -->
+
+    <div class="dashboard-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="left">
+                        <article>
+                            <header>
+                                <h1>Praktikplatser för dig</h1>
+                            </header>
+                            <div class="data-jobb">
+                                <ul>
+                                    <li>
+                                        <span><strong>Junior Webb-utvecklare Praktikant</strong></span>
+                                        <span>Jun - Sep <em>Stockholm</em></span>
+                                    </li>
+                                    <li>
+                                        <span><strong>Junior Webb-utvecklare Praktikant</strong></span>
+                                        <span>Jun - Sep <em>Stockholm</em></span>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                            <footer>
+                                <a class="btn" href="#">Se alla Praktikplaser</a>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="right sub">
+                        <article>
+                            <header>
+                                <h2>Sparade annonser</h2>
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#Redigera">Aktiva</a></li>
+                                    <li><a data-toggle="tab" href="#menu1">Missade</a></li>
+                                </ul>
+                            </header>
+
+                            <div class="tab-content">
+                                <div id="Redigera" class="tab-pane fade in active">
+                                    <div class="right-content">
+
+
+                                        <div class="accordion Aktiva" id="Aktiva">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link" type="button"
+                                                            data-toggle="collapse" data-target="#collapseOne"
+                                                            aria-expanded="true" aria-controls="collapseOne">
+                                                            <span class="icon-logo"><i
+                                                                    class="fas fa-circle"></i></span>Kommunikation och
+                                                            markand Praktikant <span><i
+                                                                    class="fas fa-caret-right"></i></span>
+                                                        </button>
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                                    data-parent="#Aktiva">
+                                                    <div class="card-body">
+                                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                                                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                                                        penatibus et magnis dis parturient montes, nascetur ridiculus
+                                                        mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                                                        quis, sem. Nulla consequat massa quis enim.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingTwo">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" type="button"
+                                                            data-toggle="collapse" data-target="#collapseTwo"
+                                                            aria-expanded="false" aria-controls="collapseTwo">
+                                                            <span class="icon-logo"><i class="fas fa-circle"></i></span>
+                                                            Junior Designer Internship <span><i
+                                                                    class="fas fa-caret-right"></i></span>
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#Aktiva">
+                                                    <div class="card-body">
+                                                        blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec
+                                                        odio et ante tincidunt tempus. Donec vitae sapien ut libero
+                                                        venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget
+                                                        eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet
+                                                        nibh. Donec sodales sagittis magna. Sed consequat, leo eget
+                                                        bibendum sodales, augue velit cursus nunc,
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div id="menu1" class="tab-pane fade">
+                                    <div class="container installningar">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6">
+                                                <h2>Uppgifter</h2>
+
+                                                <form>
+                                                    <ul>
+                                                        <li><label>Epost</label>
+                                                            <input type="text" name=""
+                                                                placeholder=" joel@microaalabs.se"></li>
+                                                        <li><label>Nytt Lösenord</label>
+                                                            <input type="text" name="" placeholder=""></li>
+                                                        <li><label>bekräfta Nytt Lösenord</label>
+                                                            <input type="text" name=""></li>
+                                                    </ul>
+                                                    <a href="#" class="btn">Ändra Lösendord</a>
+                                                </form>
+
+
+                                            </div>
+                                            <div class="col-sm-12 col-md-6">
+
+                                                <h2>Notiser </h2>
+
+                                                <form>
+                                                    <ul>
+                                                        <li><label>jag vill prenumerera på Praktils Nyhetsbrev</label>
+                                                            <input type="radio"> Ja tack!</li>
+                                                    </ul>
+                                                    <a href="#" class="btn">Spara Notisinställningar</a>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- footer-area-start -->
+    <footer class="h1-footer">
+        <div class="h1-footer-top-area">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-6 col-sm-8 col-12">
+                        <div class="h1ftaw-info h1fta-widget">
+                            <div class="f1logo">
+                                <img src="/images/allt/Logo_Praktil.png" alt="">
+                            </div>
+                            <p class="text">Lättaste sättet att hitta Praktikplatser online Praktil är et
+                                jobbsökningsplatform tillämpact för praktikanter</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-12">
+                        <div class="h1ftaw-link h1fta-widget">
+                            <h4 class="title">Företag</h4>
+                            <ul class="links">
+                                <li><a href="#">Hur fungerar det?</a></li>
+                                <li><a href="#">Priser</a></li>
+                                <li><a href="#">information</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-12">
+                        <div class="h1ftaw-link h1fta-widget">
+                            <h4 class="title">Navigera</h4>
+                            <ul class="links">
+                                <li><a href="#">Startsida</a></li>
+                                <li><a href="#">För företag</a></li>
+                                <li><a href="#">skapa konto</a></li>
+                                <li><a href="#">Användarvillkor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-9 col-sm-8 col-12">
+                        <div class="h1ftaw-footer h1fta-widget">
+                            <h4 class="title">Kontakta Oss</h4>
+                            <ul class="f-social">
+                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            </ul>
+                            <p class="f-kont-links"><a href="mailto:Kontakt@praktil.se"
+                                    target="_top">Kontakt@praktil.se</a>
+                                <a href="tel:070-000 00 00">070-000 00 00</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

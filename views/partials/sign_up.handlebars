@@ -1,0 +1,114 @@
+<!-- User registration -->
+<div id="konto" class="modal fade" role="dialog">
+    <div class="modal-dialog createAccount">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Skapa konto</h4>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br /> Aenean commodo ligula eget dolor.
+                    Aenean
+                    massa. et magnis dis </p>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    <div class="container">
+
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Praktkant</a></li>
+                            <li><a data-toggle="tab" href="#menu1">Foretag</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-sm-12 col-12 text-center">
+                                        <a class="fbBtn" href="#">Logga in med Facebook</a>
+                                        <a class="lnBtn" href="#">Logga in med Linkedin</a>
+                                    </div>
+                                    <div class="col-sm-12 col-12 text-center">
+                                        <p>eller</p>
+                                        <form action="/authentication/signup" method="POST">
+                                            <div class="row">
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="Namn" id="name" name="name"
+                                                        required="" />
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="E-post" id="email" name="email"
+                                                        required="" />
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="Losenord" id="password"
+                                                        name="password" required="" />
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <p>For att skapa ett konto maste du godkanna vara<br />
+                                                        <strong>anvandarvillkor och integritetspolicy.</strong>
+                                                        <br /><label class='lab1'> <input type="checkbox" name="check1"
+                                                                required="" /><span>Jag
+                                                                godkanner</span></label></p>
+
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <button id="submit" class="link Praktil-link-3 hvr-bs animated"
+                                                        name="submit">skapa
+                                                        Konta</button>
+                                                    <p>Har du konto? <a href='#'>Logga in</a></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <div class="row">
+
+                                    <div class="col-sm-12 col-12 text-center">
+                                        <form action="/authentication/signup" method="POST">
+                                            <div class="row">
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="Foretagsnamn" id="company_name"
+                                                        name="company_name" required="" />
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="Organisation Snummer"
+                                                        id="orgnumber" name="orgnumber"
+                                                        required="" />
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="E-post" id="company_email" name="company_email"
+                                                        required="" />
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <input type="text" placeholder="Losenord" id="company_password"
+                                                        name="company_password" required="" />
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <p>For att skapa ett konto maste du godkanna vara<br />
+                                                        <strong>anvandarvillkor och integritetspolicy.</strong>
+                                                        <br /><label class='lab1'> <input type="checkbox" name="check1"
+                                                                required="" /><span>Jag
+                                                                godkanner</span></label></p>
+
+                                                </div>
+                                                <div class="col-12 cf-input-box">
+                                                    <button id="submit" class="link Praktil-link-3 hvr-bs animated"
+                                                        name="submit">skapa
+                                                        Konta</button>
+                                                    <p>Har du konto? <a href='#'>Logga in</a></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
