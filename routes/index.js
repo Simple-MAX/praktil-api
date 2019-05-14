@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
+router.get('/dashboard', ensureAuthenticated,(req, res, next) => {
   if (req.user.isUser) {
     res.render('internships_dashboard', {
       name: req.user.name
@@ -21,16 +21,11 @@ router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
 
   if (req.user.isCompany) {
     res.render('companies_dashboard', {
+      layout: 'companies',
       name: req.user.name
     });
   }
 
-});
-
-router.get('/intern', ensureAuthenticated, (req, res, next) => {
-  res.render('internships_dashboard', {
-    name: req.user.name
-  });
 });
 
 router.get('/intern/settings', ensureAuthenticated, (req, res, next) => {
@@ -39,15 +34,17 @@ router.get('/intern/settings', ensureAuthenticated, (req, res, next) => {
   });
 });
 
-router.get('/company', ensureAuthenticated, (req, res, next) => {
-  res.render('companies_dashboard', {
-    name: 'req.user'
+router.get('/dashboard/settings', ensureAuthenticated, (req, res, next) => {
+  res.render('companies_settings', {
+    layout: 'companies',
+    name: req.user.name
   });
 });
 
-router.get('/company/settings', ensureAuthenticated, (req, res, next) => {
-  res.render('companies_settings', {
-    name: 'req.user.name'
+router.get('/dashboard/announcements', ensureAuthenticated, (req, res, next) => {
+  res.render('companies_announcements', {
+    layout: 'companies',
+    name: req.user.name
   });
 });
 

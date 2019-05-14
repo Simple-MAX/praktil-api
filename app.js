@@ -35,13 +35,22 @@ mongoose.connection.once('open', () => {
     console.log('Connection error: ', error);
 });
 
-app.engine('handlebars', exphbs({
+// Create `ExpressHandlebars` instance with a default layout.
+const hbs = exphbs.create({
     defaultLayout: 'main',
-    layoutsDir: __dirname + '/views/layouts/',
-    partialsDir: __dirname + '/views/partials/'
-}));
-app.set('views', path.join(__dirname, 'views'));
+    //helpers         : helpers,
+    layoutsDir: './views/layouts/',
+    // Uses multiple partials dirs, templates in "views/templates/" are shared
+    partialsDir: [
+        './views/templates/',
+        './views/partials/'
+    ]
+});
+
+// Register `hbs` as our view engine using its bound `engine()` function.
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(logger(':date[clf]'));
 app.use(compression());
@@ -81,23 +90,23 @@ app.use('/authentication', usersRouter);
 
 var route, routes = [];
 
-app._router.stack.forEach(function(middleware){
-    if(middleware.route){ // routes registered directly on the app
+app._router.stack.forEach(function (middleware) {
+    if (middleware.route) { // routes registered directly on the app
         routes.push(middleware.route);
-    } else if(middleware.name === 'router'){ // router middleware 
-        middleware.handle.stack.forEach(function(handler){
+    } else if (middleware.name === 'router') { // router middleware 
+        middleware.handle.stack.forEach(function (handler) {
             route = handler.route;
             route && routes.push(route);
         });
     }
 });
 
-routes.forEach(function(temp){
-	var methods = "";
-	for(var method in temp.methods){
-		methods += method + ", ";
-	}
-	console.log(temp.path + ": " + methods);
+routes.forEach(function (temp) {
+    var methods = "";
+    for (var method in temp.methods) {
+        methods += method + ", ";
+    }
+    console.log(temp.path + ": " + methods);
 });
 
 module.exports = app;
