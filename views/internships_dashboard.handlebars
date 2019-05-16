@@ -61,37 +61,13 @@
 
         </div>
     </header>
-    {{> messages }}
     <!-- header-area-end -->
 
     <div class="dashboard-main">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <div class="left">
-                        <article>
-                            <header>
-                                <h1>Praktikplatser för dig</h1>
-                            </header>
-                            <div class="data-jobb">
-                                <ul>
-                                    <li>
-                                        <span><strong>Junior Webb-utvecklare Praktikant</strong></span>
-                                        <span>Jun - Sep <em>Stockholm</em></span>
-                                    </li>
-                                    <li>
-                                        <span><strong>Junior Webb-utvecklare Praktikant</strong></span>
-                                        <span>Jun - Sep <em>Stockholm</em></span>
-                                    </li>
-                                </ul>
-
-                            </div>
-
-                            <footer>
-                                <a class="btn" href="#">Se alla Praktikplaser</a>
-                            </footer>
-                        </article>
-                    </div>
+                    {{> ads}}
                 </div>
 
                 <div class="col-lg-9 col-md-8 col-sm-12">
@@ -111,55 +87,27 @@
 
 
                                         <div class="accordion Aktiva" id="Aktiva">
-                                            <div class="card">
-                                                <div class="card-header" id="headingOne">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link" type="button"
-                                                            data-toggle="collapse" data-target="#collapseOne"
-                                                            aria-expanded="true" aria-controls="collapseOne">
-                                                            <span class="icon-logo"><i
-                                                                    class="fas fa-circle"></i></span>Kommunikation och
-                                                            markand Praktikant <span><i
-                                                                    class="fas fa-caret-right"></i></span>
-                                                        </button>
-                                                    </h5>
-                                                </div>
-
-                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                                    data-parent="#Aktiva">
-                                                    <div class="card-body">
-                                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                        penatibus et magnis dis parturient montes, nascetur ridiculus
-                                                        mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                                        quis, sem. Nulla consequat massa quis enim.
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {{#forEach jobs}}
                                             <div class="card">
                                                 <div class="card-header" id="headingTwo">
                                                     <h5 class="mb-0">
                                                         <button class="btn btn-link collapsed" type="button"
-                                                            data-toggle="collapse" data-target="#collapseTwo"
-                                                            aria-expanded="false" aria-controls="collapseTwo">
+                                                            data-toggle="collapse" data-target="#{{_id}}"
+                                                            aria-expanded="false" aria-controls="{{_id}}">
                                                             <span class="icon-logo"><i class="fas fa-circle"></i></span>
-                                                            Junior Designer Internship <span><i
+                                                            {{name}} <span><i
                                                                     class="fas fa-caret-right"></i></span>
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                <div id="{{_id}}" class="collapse" aria-labelledby="headingTwo"
                                                     data-parent="#Aktiva">
                                                     <div class="card-body">
-                                                        blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec
-                                                        odio et ante tincidunt tempus. Donec vitae sapien ut libero
-                                                        venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget
-                                                        eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet
-                                                        nibh. Donec sodales sagittis magna. Sed consequat, leo eget
-                                                        bibendum sodales, augue velit cursus nunc,
+                                                        {{description}}
                                                     </div>
                                                 </div>
                                             </div>
+                                            {{/forEach}}
                                         </div>
                                         <div class="clear"></div>
                                     </div>

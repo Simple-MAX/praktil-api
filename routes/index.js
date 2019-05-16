@@ -53,7 +53,8 @@ router.get('/dashboard', ensureAuthenticated, async(req, res, next) => {
   const jobs = await jobController.jobs();
   if (req.user.isUser) {
     res.render('internships_dashboard', {
-      name: req.user.name
+      name: req.user.name,
+      jobs: jobs
     });
   }
 

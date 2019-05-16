@@ -1,0 +1,22 @@
+<div class="left">
+    <article>
+        <header>
+            <h1>Praktikplatser för dig</h1>
+        </header>
+        <div class="data-jobb">
+            <ul>
+                {{#forEach jobs }}
+                <li>
+                    <span><strong>{{ name }}</strong></span>
+                    <span>{{date will_start_at "YYYY-MM-DD" }} <em>{{ location }}</em></span>
+                </li>
+                {{/forEach}}
+            </ul>
+
+        </div>
+
+        <footer>
+            <a class="btn" href="/announcements">Se alla Praktikplaser</a>
+        </footer>
+    </article>
+</div>
