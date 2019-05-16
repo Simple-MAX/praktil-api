@@ -15,6 +15,7 @@ const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(expressSession);
+const helpers = require('handlebars-helpers')();
 
 const config = require('./config.json');
 require('./config/passport')(passport);
@@ -38,7 +39,7 @@ mongoose.connection.once('open', () => {
 // Create `ExpressHandlebars` instance with a default layout.
 const hbs = exphbs.create({
     defaultLayout: 'main',
-    //helpers         : helpers,
+    helpers         : helpers,
     layoutsDir: './views/layouts/',
     // Uses multiple partials dirs, templates in "views/templates/" are shared
     partialsDir: [
@@ -84,6 +85,9 @@ app.use((req, res, next) => {
     next();
 });
 */
+app.use('/uploads/jobs/', express.static('uploads/jobs/'));
+app.use('/uploads/profiles/', express.static('uploads/profiles/'));
+
 
 app.use('/', indexRouter);
 app.use('/authentication', usersRouter);

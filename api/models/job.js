@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const jobSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    profile_id: {
+    creator: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile',
-        required: true
+        ref: 'User'
     },
     name: {
         type: String,
@@ -41,18 +40,24 @@ const jobSchema = mongoose.Schema({
     },
     will_start_at: {
         type: Date,
-        default: Date.now,
         required: false
     },
     will_end_at: {
         type: Date,
-        default: Date.now,
+        required: false
+    },
+    deadline: {
+        type: Date,
+        required: false
+    },
+    territories: {
+        type: String,
         required: false
     },
     jobImage: {
         type: String,
         required: false
     }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Job', jobSchema);

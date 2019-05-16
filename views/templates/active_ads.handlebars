@@ -1,0 +1,29 @@
+<div class="left">
+    <article>
+        <header>
+            <h1>Aktiva Annonser</h1>
+        </header>
+        <div class="data-jobb on-off">
+            <ul>
+                {{#forEach jobs }}
+                <li>
+                    <div>
+                        <span><strong>{{ name }}</strong></span>
+                        <span class="icon-set"><span><i class="fas fa-eye"></i> 120</span><span><i
+                                    class="far fa-save"></i>
+                                2</span><span><i class="fas fa-share-alt"></i> 3</span>
+                            <span><i class="far fa-inbox"></i> 0</span></span></div>
+                    <div><label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label></div>
+                </li>
+                {{/forEach}}
+            </ul>
+
+        </div>
+        <footer>
+            <a class="btn" href="/announcements">Se alla Praktikplaser</a>
+        </footer>
+    </article>
+</div>

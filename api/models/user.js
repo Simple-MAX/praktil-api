@@ -31,6 +31,11 @@ const userSchema = mongoose.Schema({
         type: Number,
         required: false
     },
+   info_email: {
+        type: String,
+        unique: true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    },
     // comany info
     company_name: {
         type: String,
@@ -106,10 +111,12 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
-});
+    createdAnnouncements: [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Job'
+        }
+    ]
+},  { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

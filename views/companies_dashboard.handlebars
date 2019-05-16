@@ -2,19 +2,7 @@
   <div class="container">
     <div class="row justify-content-center row-eq-height">
       <div class="col-lg-3 col-md-4 col-sm-12">
-        <div class="left">
-          <article>
-            <header>
-              <h1>Aktiva Annonser</h1>
-            </header>
-            <p><strong>Du har inga aktiva annonser</strong>
-              Klicka på knappen tängst rier för att skapa en jobbannons.</p>
-
-            <footer>
-              <a class="btn" href="#">Skapa annons</a>
-            </footer>
-          </article>
-        </div>
+        {{> active_ads}}
       </div>
 
       <div class="col-lg-9 col-md-8 col-sm-12">
@@ -23,7 +11,7 @@
 
           <article>
             <header>
-              <h2>Välkommen MicroAA Labs AB</h2>
+              <h2>Välkommen {{ name }}</h2>
             </header>
 
             <div class="information">

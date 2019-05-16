@@ -2,45 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="left">
-                    <article>
-                        <header>
-                            <h1>Aktiva Annonser</h1>
-                        </header>
-                        <div class="data-jobb on-off">
-                            <ul>
-                                <li>
-                                    <div>
-                                        <span><strong>Junior Webb-utvecklare Praktikant</strong></span>
-                                        <span class="icon-set"><span><i class="fas fa-eye"></i> 120</span><span><i
-                                                    class="far fa-save"></i> 2</span><span><i
-                                                    class="fas fa-share-alt"></i> 3</span> <span><i
-                                                    class="far fa-inbox"></i> 0</span></span></div>
-                                    <div><label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label></div>
-                                </li>
-                                <li>
-                                    <div><span><strong>Junior Webb-utvecklare Praktikant</strong></span>
-                                        <span class="icon-set"><span><i class="fas fa-eye"></i> 120</span><span><i
-                                                    class="far fa-save"></i> 2</span><span><i
-                                                    class="fas fa-share-alt"></i> 3</span> <span><i
-                                                    class="far fa-inbox"></i> 0</span></span></div>
-                                    <div><label class="switch">
-                                            <input type="checkbox" checked="checked">
-                                            <span class="slider round"></span>
-                                        </label></div>
-                                </li>
-                            </ul>
-
-                        </div>
-
-                        <footer>
-                            <a class="btn" href="#">Se alla Praktikplaser</a>
-                        </footer>
-                    </article>
-                </div>
+                {{> active_ads}}
             </div>
 
             <div class="col-lg-9 col-md-8 col-sm-12">
@@ -57,31 +19,36 @@
                         <div class="tab-content">
                             <div id="Redigera" class="tab-pane fade in active">
                                 <div class="right-content">
+                                    <form action="/update/profile" method="POST" enctype="multipart/form-data">
                                     <div class="bio-info">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="bio-image">
+                                                            {{#if user.image }}
+                                                            <img src="../{{user.image}}" alt="image">
+                                                            {{else}}
                                                             <img src="../images/allt/usericon.png" alt="image">
+                                                            {{/if}}
+                                                                <input type="file"
+                                                                    class="custom-file-input form-control"
+                                                                    name="image" id="image"
+                                                                    placeholder="Example input">
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="bio-content">
-                                                    <h2>MicroAA Labs</h2>
-                                                    <h6><span>Org nr: <strong>0000000000000</strong></span><span>Stad:
-                                                            <strong>Stockholm</strong></span></h6>
+                                                    <h2>{{ user.name }}</h2>
+                                                    <h6><span>Org nr:
+                                                            <strong>{{ user.org_number }}</strong></span><span>Stad:
+                                                            <strong>{{ user.location }}</strong></span></h6>
                                                     <p><strong>Utbildning</strong>
-                                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                                        commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                                        penatibus et magnis dis parturient montes, nascetur ridiculus
-                                                        mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                                                        quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-                                                        fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-                                                        rhoncus ut, imperdiet a, venenatis vitae, justo.
-
+                                                        <input type="text" id="description" name="description"
+                                                            placeholder="{{ user.description }}">
                                                         <a href="#">redigera <i class="fas fa-pencil-alt"></i></a>
 
                                                     </p>
@@ -95,35 +62,41 @@
                                             <ul class="list-unstyled row">
                                                 <li class="list-item col-sm-6">
                                                     <div><strong>Företagsnamn</strong>
-                                                        <p class="klar"><span>MicroAA Labs</span> <a href="#">Klar</a>
+                                                        <p class="klar"><input type="text" id="name" name="name"
+                                                                placeholder="{{ user.name }}"> <a href="#">Klar</a>
                                                         </p>
                                                     </div>
 
                                                 </li>
                                                 <li class="list-item col-sm-6">
                                                     <div><strong>Org nummer </strong>
-                                                        <p><span>0000000000000 </span> <a href="#">redigera <i
-                                                                    class="fas fa-pencil-alt"></i></a></p>
+                                                        <p><input type="text" id="org_number" name="org_number"
+                                                                placeholder="{{ user.org_number }}"><a href="#">redigera
+                                                                <i class="fas fa-pencil-alt"></i></a></p>
                                                     </div>
                                                 </li>
                                                 <li class="list-item col-sm-6">
                                                     <div><strong>Plats/Adress </strong>
-                                                        <p><span>000000000000</span> <a href="#">redigera <i
-                                                                    class="fas fa-pencil-alt"></i></a></p>
+                                                        <p><input type="text" id="location" name="location"
+                                                                placeholder="{{ user.location }}"><a href="#">redigera
+                                                                <i class="fas fa-pencil-alt"></i></a></p>
                                                     </div>
                                                 </li>
                                                 <li class="list-item col-sm-6">
                                                     <div><strong>Kontakt info</strong>
-                                                        <p><span>joel@microaalabs.se </span> <a href="#">redigera <i
+                                                        <p><input type="text" id="info_email" name="info_email"
+                                                                placeholder="{{ user.info_email }}"><a href="#">redigera <i
                                                                     class="fas fa-pencil-alt"></i></a></p>
-                                                        <p><span>021000 00 00</span> <a href="#">redigera <i
+                                                        <p><input type="text" id="phone" name="phone"
+                                                                placeholder="{{ user.phone }}"><a href="#">redigera <i
                                                                     class="fas fa-pencil-alt"></i></a></p>
                                                     </div>
                                                 </li>
                                                 <li class="list-item col-sm-6">
                                                     <div><strong>Hemsida</strong>
-                                                        <p><span>000000000000</span> <a href="#">redigera <i
-                                                                    class="fas fa-pencil-alt"></i></a></p>
+                                                        <p><input type="text" id="website" name="website"
+                                                                placeholder="{{  user.website  }}"><a href="#">redigera
+                                                                <i class="fas fa-pencil-alt"></i></a></p>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -137,8 +110,9 @@
 
 
                                 <div class="right-content-btn">
-                                    <a class="btn" href="#">Spara inställningar</a>
+                                    <button class="btn" type="submit">Spara inställningar</button>
                                 </div>
+                                </form>
 
                             </div>
                             <div id="menu1" class="tab-pane fade">
@@ -147,17 +121,19 @@
                                         <div class="col-sm-12 col-md-6">
                                             <h2>Uppgifter</h2>
 
-                                            <form>
+                                            <form action="/update/account" method="POST" enctype="multipart/form-data">
                                                 <ul>
                                                     <li><label>Epost</label>
-                                                        <input type="text" name="" placeholder=" joel@microaalabs.se">
+                                                        <input type="text" id="email" name="email"
+                                                            placeholder=" {{ user.email }}">
                                                     </li>
                                                     <li><label>Nytt Lösenord</label>
-                                                        <input type="text" name="" placeholder=""></li>
+                                                        <input type="text" id="password" name="password" placeholder="">
+                                                    </li>
                                                     <li><label>bekräfta Nytt Lösenord</label>
                                                         <input type="text" name=""></li>
                                                 </ul>
-                                                <a href="#" class="btn">Ändra Lösendord</a>
+                                                <button id="submit" name="submit" class="btn">Ändra Lösendord</button>
                                             </form>
 
 
@@ -166,12 +142,13 @@
 
                                             <h2>Notiser </h2>
 
-                                            <form>
+                                            <form action="/notifications" method="POST">
                                                 <ul>
                                                     <li><label>jag vill prenumerera på Praktils Nyhetsbrev</label>
-                                                        <input type="radio"> Ja tack!</li>
+                                                        <input type="radio" id="notifications" name="notifications"> Ja
+                                                        tack!</li>
                                                 </ul>
-                                                <a href="#" class="btn">Spara Notisinställningar</a>
+                                                <button type="submit" class="btn">Spara Notisinställningar</button>
                                             </form>
                                         </div>
                                     </div>
