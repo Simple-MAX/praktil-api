@@ -1,0 +1,137 @@
+<div data-spy="scroll" data-target="#scroll-menu" data-offset="65" class="dashboard">
+  <!-- ===================================================
+        Loading Transition
+    ==================================================== -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+  </div>
+  <!-- header-area-start -->
+  {{> header}}
+  <div class="h3-slider-area owl-carousel">
+    <div class="h3-slider-box-X">
+      <div class="img bg-with-black fishy">
+        <img src="../{{job.jobImage}}" alt="">
+      </div>
+
+    </div>
+  </div>
+  <!-- header-area-end -->
+
+  <div class="dashboard-main-X ">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="left">
+            <article>
+              <header>
+                <div class="f1logo">
+                  <img src="../{{ company.image }}" alt="" class="main-x">
+                </div>
+              </header>
+              <div class="main-X-one">
+                <h5>Arbetsgivare</h5>
+                <h6>{{ company.name }}</h6>
+              </div>
+              <div class="main-X-two">
+                <h5>Ort</h5>
+                <h6>{{ job.location }}</h6>
+              </div>
+              <div class="main-X-three">
+                <h5>Antal platser</h5>
+                <h6>1/{{ job.availability }}</h6>
+              </div>
+              <div class="main-X-four">
+                <h5>Ansökning</h5>
+                <h6>Senast {{date deadline "YYYY-MM-DD"}}</h6>
+              </div>
+              <footer>
+                <a class="btn" id="btn-one" href="#">Ansök nu</a>
+                <a class="btn" id="btn-two" href="#">Spara</a>
+              </footer>
+            </article>
+          </div>
+        </div>
+
+        <div class="col-lg-9 col-md-8 col-sm-12">
+          <h1> {{ job.name }}</h1>
+          <h3>
+            <bold>Vi Söker:</bold>
+          </h3>
+          <h4>{{ job.looking_for }}
+          </h4>
+
+
+          <h3>
+            <bold>Om tjänsten:</bold>
+          </h3>
+          <h4>{{ job.description }}
+          </h4>
+
+
+          <h3>
+            <bold>Krav:</bold>
+          </h3>
+          <h5>
+            <ul>
+              <li> {{ job.requirement }}</li><br>
+            </ul>
+          </h5>
+
+          <h3>
+            <bold>Ansökan:</bold>
+          </h3>
+          <h4>{{ job.application }}
+          </h4>
+        </div>
+      </div>
+    </div>
+    <div class="main-X-footer">
+      <div class="container">
+        <h2> Liknande praktikplatser</h2>
+        <div class="results-box">
+          <div class="box-left">
+            <h4>Marknadsassistans Internship </h4>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+              Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+              ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim...</p>
+
+            <footer>
+              <ul>
+                <li><span><i class="fal fa-user"></i></span>1/5</li>
+                <li><span><i class="far fa-map-marker-alt"></i></span>Stockholm</li>
+                <li><span><i class="far fa-calendar-alt"></i></span>2018-11-20</li>
+              </ul>
+            </footer>
+          </div>
+          <div class="box-right">
+            <img src="../images/allt/aa.png" alt="">
+            <a href="#"> MicroAA Labs AB</a>
+            <a href="#" class="btn">Läs mer</a>
+
+          </div>
+        </div>
+        <div class="results-box">
+          <div class="box-left">
+            <h4>Marknadsassistans Internship </h4>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+              Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+              ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim...</p>
+
+            <footer>
+              <ul>
+                <li><span><i class="fal fa-user"></i></span>1/5</li>
+                <li><span><i class="far fa-map-marker-alt"></i></span>Stockholm</li>
+                <li><span><i class="far fa-calendar-alt"></i></span>2018-11-20</li>
+              </ul>
+            </footer>
+          </div>
+          <div class="box-right">
+            <img src="../images/allt/aa.png" alt="">
+            <a href="#"> MicroAA Labs AB</a>
+            <a href="#" class="btn">Läs mer</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

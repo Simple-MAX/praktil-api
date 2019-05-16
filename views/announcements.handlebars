@@ -109,26 +109,30 @@
               <div class="clear"></div>
             </header>
 
+            {{#forEach jobs }}
             <div class="results-box">
               <div class="box-left">
-                <h4>Web Developer</h4>
-                <p>react js is cool</p>
+                <h4>{{ name }}</h4>
+                <p>{{ description }}</p>
 
                 <footer>
                   <ul>
-                    <li><span><i class="fas fa-user"></i></span>2</li>
-                    <li><span><i class="fas fa-map-marker-alt"></i></span>Stockholm</li>
-                    <li><span><i class="far fa-calendar-alt"></i></span>24 - February - 2019</li>
+                    <li><span><i class="fas fa-user"></i></span>{{ availability }}</li>
+                    <li><span><i class="fas fa-map-marker-alt"></i></span>{{ location }}</li>
+                    <li><span><i class="far fa-calendar-alt"></i></span>{{date will_start_at "YYYY-MM-DD" }}</li>
+                    <li><span><i class="far fa-calendar-alt"></i></span>{{date will_end_at "YYYY-MM-DD" }}</li>
+                    <li><span><i class="far fa-calendar-alt"></i></span>{{date deadline "YYYY-MM-DD" }}</li>
                   </ul>
                 </footer>
               </div>
               <div class="box-right">
-                <img src="system/posts/images/000/000/001/medium/Fortnite_Secret_Skirmish2b6b.html?1551019633" />
+                <img src="../{{ jobImage }}" />
                 <a href="info/2.html">NTI</a>
-                <a class="btn" href="posts/1.html">Läs mer</a>
+                <a class="btn" href="/announcement/{{ _id }}">Läs mer</a>
 
               </div>
             </div>
+            {{/forEach }}
             <div class="results-box">
               <div class="box-left">
                 <h4>Test</h4>

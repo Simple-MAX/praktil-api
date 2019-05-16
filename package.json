@@ -25,6 +25,7 @@
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
     "handlebars-helpers": "^0.10.0",
+    "helper-dateformat": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.20",
     "morgan": "^1.9.1",

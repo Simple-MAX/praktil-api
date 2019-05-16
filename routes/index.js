@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 
 
 const router = express.Router();
-
+const Job = require('../api/models/job');
+const User = require('../api/models/user');
 const jobController = require('../controllers/jobs');
 const userController = require('../controllers/users');
 
+const { dateToString } = require('../helpers/date');
 const {
   ensureAuthenticated
 } = require('../config/auth');
@@ -90,11 +92,23 @@ router.get('/dashboard/announcements', ensureAuthenticated, async (req, res, nex
   });
 });
 
-router.get('/announcements', (req, res, next) => {
-  res.render('announcements')
+router.get('/announcements', async (req, res, next) => {
+  const jobs = await jobController.jobs();
+  res.render('announcements', {
+    jobs: jobs
+  })
 });
 
-router.get('/companies', (req, res, next) => {
+router.get('/announcement/:announcementID', async (req, res, next) => {
+  const job = await Job.findById(req.params.announcementID);
+  const company = await User.findById(job.creator);
+  res.render('job', {
+    job: job,
+    company: company
+  })
+});
+
+router.get('/companies', async (req, res, next) => {
   res.render('companies')
 });
 
