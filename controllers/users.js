@@ -125,24 +125,6 @@ module.exports = {
             successRedirect: '/dashboard',
             failureRedirect: '/'
         })(req, res, next);
-        /*passport.authenticate('local', (error, user, info) => {
-            if (error) {
-                return next(error);
-            }
-            if (!user) {
-                res.redirect('/');
-            }
-
-            // if login was successful
-            if (user.isUser === true) {
-                console.log(user.isUser);
-                res.redirect('/intern');
-            }
-
-            if (user.isCompany === true) {
-                res.redirect('/company')
-            }
-        })(req, res, next);*/
     },
 
     updateProfile: async (req, res, next) => {
@@ -150,10 +132,17 @@ module.exports = {
         for (const [key, value] of Object.entries(req.body)) {
             updates[key] = value;
         }
-        if (req.file.path) {
-            updates['image'] = req.file.path
-        } 
-        console.log(updates);
+        if (req.files) {
+            if (req.files.image) {
+                updates['image'] = req.files.image[0].path
+            }
+            if (req.files.cv) {
+                updates['cv'] = req.files.cv[0].path
+            }
+            if (req.files.letter) {
+                updates['letter'] = req.files.cv[0].path
+            }
+        }
         await User.update({
             _id: req.user.id
         }, {

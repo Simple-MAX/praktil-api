@@ -21,6 +21,15 @@ module.exports = {
         }
     },
 
+    myJobs: async (id, req, res, next) => {
+        try {
+            const jobs = await Job.find({ _id: id});
+            return jobs;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     createJob: async (req, res, next) => {
         if (!req.login) {
             res.redirect('/');

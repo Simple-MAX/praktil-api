@@ -7,7 +7,7 @@
             <ul>
                 {{#forEach jobs }}
                 <li>
-                    <span><strong>{{ name }}</strong></span>
+                    <a href="/announcement/{{_id}}"><span><strong>{{ name }}</strong></span></a>
                     <span>{{date will_start_at "YYYY-MM-DD" }} <em>{{ location }}</em></span>
                 </li>
                 {{/forEach}}

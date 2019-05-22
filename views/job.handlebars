@@ -45,7 +45,8 @@
                 <h6>Senast {{date deadline "YYYY-MM-DD"}}</h6>
               </div>
               <footer>
-                <a class="btn" id="btn-one" href="#">Ansök nu</a>
+                <a class="btn" href="#send" data-toggle="modal"
+                                                data-target="#send">Ansök nu</a>
                 <a class="btn" id="btn-two" href="#">Spara</a>
               </footer>
             </article>
@@ -127,11 +128,12 @@
           </div>
           <div class="box-right">
             <img src="../images/allt/aa.png" alt="">
-            <a href="#"> MicroAA Labs AB</a>
+            <a > MicroAA Labs AB</a>
             <a href="#" class="btn">Läs mer</a>
 
           </div>
         </div>
       </div>
     </div>
+      {{> send_application}}
   </div>

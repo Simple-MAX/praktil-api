@@ -19,6 +19,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    started_school: {
+        type: Date,
+        required: false
+    },
+    ended_school: {
+        type: Date,
+        required: false
+    },
     location: {
         type: String,
         required: false
@@ -115,6 +123,12 @@ const userSchema = mongoose.Schema({
         {
             type : mongoose.Schema.Types.ObjectId,
             ref : 'Job'
+        }
+    ],
+    appliedJobs: [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Application'
         }
     ]
 },  { timestamps: true });
