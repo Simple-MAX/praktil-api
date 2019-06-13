@@ -13,6 +13,11 @@ const config = require('../../config.json');
  */
 module.exports = {
 
+    users: async(req, res, next) => {
+        const result = await User.find();
+        return res.status(200).json({result});
+    },
+
     /**
      * @description
      * HTTPS-Method : POST

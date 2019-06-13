@@ -7,7 +7,7 @@
 const http = require('http');
 
 // import api
-const api = require('./api');
+const api = require('../api');
 
 // add the port to the system env
 const port = process.env.PORT || 8080;

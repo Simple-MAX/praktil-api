@@ -22,6 +22,7 @@ require('./config/passport')(passport);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -73,9 +74,16 @@ app.use(expressSession({
         collection: 'sessions'
     })
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Express Messages Middleware
 app.use(flash());
+app.use((req, res, next) => {
+    res.locals.messages = require('express-messages')(req, res);
+    next();
+})
 
 // Global Vars
 /*
@@ -90,6 +98,7 @@ app.use('/uploads/profiles/', express.static('uploads/profiles/'));
 
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 app.use('/authentication', usersRouter);
 
 var route, routes = [];

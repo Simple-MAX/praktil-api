@@ -43,7 +43,7 @@ const fileFilter = (req, file, cb) => {
   } else {
     cb(null, false);
   }
-}
+};
 
 // upload config
 const upload = multer({
@@ -72,9 +72,28 @@ router.get('/dashboard', ensureAuthenticated, async (req, res, next) => {
     console.log('cookie exists', cookie);
   }
 
+  const allUsers = await userController.users();
+  const interns = await userController.interns();
+  const companies = await userController.companies();
+  const usersCount = await userController.userCount();
+  const companyCount = await userController.companyCount();
+  const internCount = await userController.internCount();
+  const userDailyCount = await userController.userDailyCount();
+  const jobsCount = await jobController.jobCount();
+  const jobDailyCount = await jobController.jobDailyCount();
   const jobs = await jobController.jobs();
+  const applicationsCount = await applicationController.applicationsCount();
+  const applicationsDailyCount = await applicationController.applicationsDailyCount();
   const applications = await applicationController.applications(cookie);
 
+  console.log({
+    users: usersCount,
+    dailyUsers: userDailyCount,
+    jobs: jobsCount,
+    dailyJobs: jobDailyCount,
+    applications: applicationsCount,
+    dailyApplications: applicationsDailyCount
+  });
   /*applications.forEach(application => {
     jobIDs['id'] = application.job
   })*/
@@ -104,6 +123,26 @@ router.get('/dashboard', ensureAuthenticated, async (req, res, next) => {
       name: req.user.name,
       jobs: jobs
     });
+  }
+
+  if (req.user.isAdmin) {
+    res.render('admins_dashboard', {
+      layout: 'admins',
+      users: allUsers,
+      companies: companies,
+      interns: interns,
+      jobs: jobs,
+      count: {
+        internCount: internCount,
+        companyCount: companyCount,
+        users: usersCount,
+        dailyUsers: userDailyCount,
+        jobs: jobsCount,
+        dailyJobs: jobDailyCount,
+        applications: applicationsCount,
+        dailyApplications: applicationsDailyCount
+      },
+    })
   }
 
 });
@@ -157,7 +196,7 @@ router.get('/announcements', async (req, res, next) => {
   })
 });
 
-router.get('/announcement/:announcementID', async (req, res, next) => {
+router.get('/announcement/:announcementID', ensureAuthenticated,async (req, res, next) => {
   jobID = req.params.announcementID;
   const job = await Job.findById(req.params.announcementID);
   const company = await User.findById(job.creator);
@@ -178,7 +217,7 @@ router.get('/checkauth', ensureAuthenticated, function (req, res) {
   });
 });
 
-router.post('/dashboard/announcements/create', upload.single('jobImage'), jobController.createJob);
+router.post('/dashboard/announcements/create', ensureAuthenticated,upload.single('jobImage'), jobController.createJob);
 
 const fields = [
   {
@@ -192,11 +231,20 @@ const fields = [
   }
 ];
 
-router.post('/update/profile', upload.fields(fields), userController.updateProfile);
-router.post('/update/account', userController.update);
-router.post('/notifications', userController.notifications);
+router.post('/update/profile', ensureAuthenticated,upload.fields(fields), userController.updateProfile);
+router.post('/update/account', ensureAuthenticated,userController.update);
+router.post('/notifications', ensureAuthenticated,userController.notifications);
 
-router.post('/send/application', applicationController.sendApplication);
+router.post('/send/application', ensureAuthenticated,applicationController.sendApplication);
 //router.post('/cancel/application:ID', applicationController.cancelApplication);
+
+
+router.all('/session-flash', ( req, res ) => {
+  req.session.sessionFlash = {
+    type: 'info',
+    message: 'This is a flash message using custom middleware and express-session.'
+  }
+  res.redirect(301, '/');
+});
 
 module.exports = router;

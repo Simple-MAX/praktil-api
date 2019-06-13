@@ -1,6 +1,7 @@
 const Job = require('../api/models/job');
 const User = require('../api/models/user');
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const {
     transformJob
@@ -10,6 +11,22 @@ const {
 } = require('../helpers/date');
 
 module.exports = {
+
+
+    jobCount: async (req, res, next) => {
+        const jobs = await Job.find().count()
+        console.log(jobs)
+        return jobs
+    },
+
+    jobDailyCount: async (req, res, next) => {
+        const start = moment().startOf('day');
+        const end = moment().endOf('day');
+        const jobs = await Job.find({ createdAt: { $gte: start, $lt: end }}).count()
+        console.log(jobs)
+        return jobs
+    },
+
     jobs: async (req, res, next) => {
         try {
             const jobs = await Job.find();

@@ -1,0 +1,22 @@
+<div class="tab-pane active" id="total" role="tabpanel"
+     aria-labelledby="total-tab">
+    <div class="data-table">
+        <table>
+            <tr>
+                <th>Annonsnamn</th>
+                <th>Företag</th>
+                <th>Aktiv</th>
+                <th>Publicerades</th>
+            </tr>
+            {{#forEach jobs }}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ creator }}</td>
+                    <td><input type="radio" value="{{ publish }}"/> </td>
+                    <td>{{ date createdAt "YYYY-MM-DD" }}</td>
+                    <td><i class="fas fa-cog"> <a href="/ads/{{_id}}">Visa</a> </i></td>
+                </tr>
+            {{/forEach}}
+        </table>
+    </div>
+</div>

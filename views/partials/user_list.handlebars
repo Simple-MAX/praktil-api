@@ -1,0 +1,77 @@
+<div class="tab-pane active" id="total" role="tabpanel"
+     aria-labelledby="total-tab">
+    <div class="data-table">
+        <table>
+            <tr>
+                <th>Namn</th>
+                <th>Type</th>
+                <th>Skapades</th>
+                <th>Åtgärd</th>
+            </tr>
+            {{#forEach users }}
+                <tr>
+                    <td>{{ name }}</td>
+                    {{#if isCompany}}
+                        <td>Företag</td>
+                    {{/if}}
+                    {{#if isAdmin}}
+                        <td>Admin</td>
+                    {{/if}}
+                    {{#if isUser}}
+                        <td>Praktiker</td>
+                    {{/if}}
+                    <td>{{ date createdAt "YYYY-MM-DD" }}</td>
+                    <td><a href="/profile/{{_id}}">Visa Användare</a></td>
+                </tr>
+            {{/forEach}}
+            <tfoot>
+            <tr>
+                <td colspan="4"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div class="tab-pane" id="forteg" role="tabpanel" aria-labelledby="forteg-tab">
+    <div class="data-table">
+        <table>
+            <tr>
+                <th>Namn</th>
+                <th>Skapades</th>
+                <th>Åtgärd</th>
+            </tr>
+            {{#forEach companies }}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ date createdAt "YYYY-MM-DD" }}</td>
+                    <td><a href="/profile/{{_id}}">Visa Användare</a></td>
+                </tr>
+            {{/forEach}}
+            <tfoot>
+            <tr>
+                <td colspan="4"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div class="tab-pane" id="privatpersoner" role="tabpanel"
+     aria-labelledby="privatpersoner-tab">
+
+    <div class="data-table">
+        <table>
+            <tr>
+                <th>Namn</th>
+                <th>Skapades</th>
+                <th>Åtgärd</th>
+            </tr>
+            {{#forEach interns }}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ date createdAt "YYYY-MM-DD" }}</td>
+                    <td><a href="/profile/{{_id}}">Visa Användare</a></td>
+                </tr>
+            {{/forEach}}
+        </table>
+    </div>
+</div>

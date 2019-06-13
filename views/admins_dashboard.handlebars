@@ -1,0 +1,190 @@
+<div>
+    <div class="dashboard-admin">
+        <div class="container-fluid">
+            <div class="row">
+                {{> admins_navbar}}
+                <div class="col-lg-10 col-md-9 col-sm-12 right">
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="home1" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="breadcrum"><a href="#">Dashboard</a>/</div>
+                            <div class="right-content">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="data-box">
+                                            <h2>Antal Medlemmar</h2>
+                                            <table>
+                                                <tr>
+                                                    <td>TOTALT</td>
+                                                    <td>IDAG</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="total">{{ count.users }}</td>
+                                                    <td class="idag">{{ count.dailyUsers }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="data-box">
+                                            <h2>Antal Annonser</h2>
+                                            <table>
+                                                <tr>
+                                                    <td>TOTALT</td>
+                                                    <td>IDAG</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="total">{{ count.jobs }}</td>
+                                                    <td class="idag">{{ count.dailyJobs }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="data-box">
+                                            <h2>Antal skicka förfrågan</h2>
+                                            <table>
+                                                <tr>
+                                                    <td>TOTALT</td>
+                                                    <td>IDAG</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="total">{{ count.applications }}</td>
+                                                    <td class="idag">{{ count.dailyApplications }}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{> table}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="data-table">
+                                            <h2>Populäraste Företagen </h2>
+                                            <table>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Annons</th>
+                                                    <th>Företag</th>
+                                                    <th>Klick</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Lorem</td>
+                                                    <td>Lorem ipsum</td>
+                                                    <td>2300</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Lorem</td>
+                                                    <td>Lorem ipsum</td>
+                                                    <td>2300</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Lorem</td>
+                                                    <td>Lorem ipsum</td>
+                                                    <td>2300</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Lorem</td>
+                                                    <td>Lorem ipsum</td>
+                                                    <td>2300</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Lorem</td>
+                                                    <td>Lorem ipsum</td>
+                                                    <td>2300</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="right-content">
+
+                                <div class="row search-section">
+                                    <div class="col-md-9">
+                                        <div class="form-group has-search">
+                                            <span class="fa fa-search form-control-feedback"></span>
+                                            <input type="text" class="form-control" placeholder="Sök förteg">
+                                            <button type="submit" class="btn sok">Sök</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3"><a href="#" class="btn">Skapa företag</a></div>
+                                </div>
+
+
+                                <div class="search-result">
+
+                                    <ul class="nav nav-tabs" id="ptab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="total-tab" data-toggle="tab" href="#total"
+                                                role="tab" aria-controls="total" aria-selected="true">Totalt
+                                                {{ count.users }}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="forteg-tab" data-toggle="tab" href="#forteg"
+                                                role="tab" aria-controls="forteg" aria-selected="false">Företag {{ count.companyCount }}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="privatpersoner-tab" data-toggle="tab"
+                                                href="#privatpersoner" role="tab" aria-controls="privatpersoner"
+                                                aria-selected="false">Privatpersoner {{ count.internCount }}</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        {{> user_list}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                            <div class="right-content">
+
+                                <div class="row search-section annons">
+                                    <div class="col-md-12">
+                                        <div class="form-group has-search">
+                                            <span class="fa fa-search form-control-feedback"></span>
+                                            <input type="text" class="form-control" placeholder="Sök förteg">
+                                        </div>
+                                        <div class="form-group has-search">
+                                            <span class="fa fa-search form-control-feedback"></span>
+                                            <input type="text" class="form-control" placeholder="Sök förteg">
+                                        </div>
+                                        <div class="form-group has-search"> <button type="submit"
+                                                class="btn sok">Sök</button></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="search-result">
+
+                                    <ul class="nav nav-tabs" id="ptab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="total-tab" data-toggle="tab" href="#total"
+                                                role="tab" aria-controls="total" aria-selected="true">Totalt 5787</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        {{> announcements_list}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">Step 4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

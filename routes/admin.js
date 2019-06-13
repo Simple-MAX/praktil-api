@@ -1,6 +1,6 @@
 /**
  * author: https://github.com/Simple-MAX
- * Praktil API - users.js
+ * Praktil MVC - users.js
  */
 
 // import your npm module here 
@@ -8,10 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 // import your controller && middleware
-const controller = require('../controllers/users');
-const config = require('../../config.json');
-
-router.get('/all', controller.users);
+const controller = require('../controllers/admins');
 
 /**
  * @description
@@ -32,11 +29,15 @@ router.post('/signin', controller.signin); // Router.Method(path, middleware, co
 
 /**
  * @description
- * HTTPS-Method : GET
- * Path : 'protocol://example.domain/resources/id'
- * description : delete an account
+ * HTTPS-Method : POST
+ * Path : 'protocol://example.domain/resources'
+ * description : logout the user
  */
 
-router.delete('/:userId', controller.delete); // Router.Method(path, middleware, controller.function)
+router.get('/signout', controller.signout); // Router.Method(path, middleware, controller.function)
+
+router.get('/login', async (req, res, next) => {
+    res.render('admin_sign_in')
+});
 
 module.exports = router;

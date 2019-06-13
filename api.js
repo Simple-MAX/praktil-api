@@ -61,7 +61,7 @@ api.use((req, res, next) => {
 // add the newly created route to the main url
 api.use('/jobs', jobsRoutes);
 api.use('/applications', applicationsRoutes);
-api.use('/auth/users', usersRoutes);
+api.use('/api/V1/users', usersRoutes);
 api.use('/auth/admins', adminRoutes);
 api.use('/auth/companies', companyRoutes);
 api.use('/profiles', profileRoutes);

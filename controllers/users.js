@@ -3,11 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const {
-    body,
-    validationResult,
-    check
-} = require('express-validator/check');
+const moment = require('moment');
 
 const User = require('../api/models/user');
 const config = require('../config.json');
@@ -18,6 +14,38 @@ const config = require('../config.json');
  * @description :: Server-side logic for managing users.
  */
 module.exports = {
+
+    // load all user
+    users: async (req, res, next) => {
+        return await User.find()
+    },
+
+    interns: async () => {
+        return await User.find({ isUser: true })
+    },
+
+    companies: async () => {
+        return await User.find({ isCompany: true })
+    },
+
+    companyCount: async (req, res, next) => {
+        return await User.find({ isCompany: true }).count()
+    },
+
+    internCount: async (req, res, next) => {
+        return await User.find({ isUser: true }).count()
+    },
+
+    userCount: async (req, res, next) => {
+        return await User.find().count()
+    },
+
+    userDailyCount: async (req, res, next) => {
+        const start = moment().startOf('day');
+        const end = moment().endOf('day');
+        return await User.find({createdAt: {$gte: start, $lt: end}}).count()
+    },
+
 
     /**
      * @description
@@ -40,7 +68,6 @@ module.exports = {
                 })
                 .then(user => {
                     if (user) {
-                        console.log(error);
                         res.render('landing');
                     } else {
                         bcrypt.hash(req.body.password, 10, (error, hash) => {
@@ -55,8 +82,8 @@ module.exports = {
                                 });
                                 user
                                     .save()
-                                    .then(result => {
-                                        res.redirect('/intern');
+                                    .then(() => {
+                                        res.redirect('/dashboard');
                                     })
                                     .catch(error => {
                                         console.log(error);
@@ -75,7 +102,6 @@ module.exports = {
                 })
                 .then(user => {
                     if (user) {
-                        console.log(error);
                         res.render('landing');
                     } else {
                         bcrypt.hash(req.body.company_password, 10, (error, hash) => {
@@ -93,9 +119,9 @@ module.exports = {
                                 });
                                 user
                                     .save()
-                                    .then(result => {
-                                        req.flash('success_message', 'User created')
-                                        res.redirect('/company');
+                                    .then(() => {
+                                        req.flash('success_message', 'User created');
+                                        res.redirect('/dashboard');
                                     })
                                     .catch(error => {
                                         console.log(error);
@@ -128,7 +154,7 @@ module.exports = {
     },
 
     updateProfile: async (req, res, next) => {
-        const updates = {}
+        const updates = {};
         for (const [key, value] of Object.entries(req.body)) {
             updates[key] = value;
         }
@@ -204,5 +230,9 @@ module.exports = {
     signout: (req, res, next) => {
         req.logout();
         res.redirect('/');
+    },
+
+    show: async (req, res, next) => {
+        const  user = await User.find({_id: id})
     }
 };
