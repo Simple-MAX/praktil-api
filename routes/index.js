@@ -155,8 +155,8 @@ router.get('/intern/settings', ensureAuthenticated, (req, res, next) => {
 
 router.get('/dashboard/settings', ensureAuthenticated, async (req, res, next) => {
   const jobs = await jobController.jobs();
-  const started_school = new Date(req.user.started_school).toISOString();
-  const ended_school = new Date(req.user.ended_school).toISOString();
+  const started_school = new Date(req.user.started_school);
+  const ended_school = new Date(req.user.ended_school);
   const started = moment(started_school).format('YYYY-MM-DD');
   const ended = moment(ended_school).format('YYYY-MM-DD');
   if (req.user.isUser) {
