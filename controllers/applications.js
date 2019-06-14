@@ -20,15 +20,14 @@ module.exports = {
     applicationsDailyCount: async (req, res, next) => {
         const start = moment().startOf('day');
         const end = moment().endOf('day');
-        const jobs = await Application.find({ createdAt: { $gte: start, $lt: end }}).count()
-        console.log(jobs)
+        const jobs = await Application.find({ createdAt: { $gte: start, $lt: end }}).count();
+        console.log(jobs);
         return jobs
     },
 
     applications: async (id, req, res, next) => {
         try {
-            const applications = await Application.find({ user: id});
-            return applications;
+            return await Application.find({user: id});
         } catch (error) {
             console.log(error);
         }

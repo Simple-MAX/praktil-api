@@ -57,7 +57,7 @@ const upload = multer({
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('landing', {
-    user: req.user
+    isUser: req.user
   });
 });
 
@@ -101,7 +101,7 @@ router.get('/dashboard', ensureAuthenticated, async (req, res, next) => {
   for (let index = 0; index < applications.length; index++) {
     jobIDs['id'] = applications[index];
   }
-  console.log(jobIDs);
+  console.log(applications);
   /*for (let index = 0; index < jobIDs.length; index++) {
     const element = jobController.myJobs(jobIDs[index]);
     console.log(element);
@@ -192,6 +192,7 @@ router.get('/dashboard/announcements', ensureAuthenticated, async (req, res, nex
 router.get('/announcements', async (req, res, next) => {
   const jobs = await jobController.jobs();
   res.render('announcements', {
+    isUser: req.user,
     jobs: jobs
   })
 });
@@ -201,13 +202,16 @@ router.get('/announcement/:announcementID', ensureAuthenticated,async (req, res,
   const job = await Job.findById(req.params.announcementID);
   const company = await User.findById(job.creator);
   res.render('job', {
+    isUser: req.user,
     job: job,
     company: company
   })
 });
 
 router.get('/companies', async (req, res, next) => {
-  res.render('companies')
+  res.render('companies', {
+    isUser: req.user
+  })
 });
 
 router.get('/checkauth', ensureAuthenticated, function (req, res) {

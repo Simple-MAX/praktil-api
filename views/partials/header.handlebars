@@ -22,9 +22,14 @@
               </nav>
             </div>
             <div class="h1hba-get-quote menu-praktil">
-              <a class="link hvr-bs Praktil-link" href="#Login" data-toggle="modal" data-target="#Login">Logga in</a>
-              <a class="link hvr-bs Praktil-link-2" href="#konto" data-toggle="modal" data-target="#konto">Skapa
-                konto</a>
+                {{#if isUser}}
+                    <a class="Praktil-link-3" style="margin: 10px" href="/authentication/signout">Logga ut
+                        konto</a>
+                {{else}}
+                    <a class="link hvr-bs Praktil-link" href="#Login" data-toggle="modal" data-target="#Login">Logga in</a>
+                    <a class="link hvr-bs Praktil-link-2" href="#konto" data-toggle="modal" data-target="#konto">Skapa
+                        konto</a>
+                {{/if}}
             </div>
           </div>
         </div>

@@ -55,7 +55,7 @@
                                             <ul class="list-unstyled row">
                                                 <li class="list-item col-sm-6">
                                                     <div><strong>Namn</strong>
-                                                        <p class="klar"><input type="text" id="name" name="name"
+                                                        <p><input type="text" id="name" name="name"
                                                             placeholder="{{ user.name }}" value="{{ user.name }}"> <a href="#">Klar</a></p>
                                                     </div>
 
@@ -160,23 +160,25 @@
                                     <div class="clear"></div>
                                 </div>
                                 <div class="right-content">
-                                    <h2>CV & Personlinligt brev</h2>
+                                    <h2 style="margin: 10px auto; text-align: center;">CV & Personlinligt brev</h2>
                                     <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="sub-box se-praktilkplatser-inom prt_1 active">
-                                                    <h3>CV</h3>
+                                        <div class="row" style="margin: 0 auto">
+                                            <div class="col-lg-6 col-sm-12">
+                                                <div class="sub-box se-praktilkplatser-inom prt_1" style="width: 300px">
+                                                    <h3 style="margin: 0 auto;">CV</h3>
                                                     <input type="file"
-                                                                    class="custom-file-input link Praktil-link hvr-bs animated active form-control"
+                                                                    class="custom-file-input form-control"
                                                                     name="cv" id="cv"
+                                                           style="margin: 0 auto;"
                                                                     placeholder="Example input" value="{{ user.cv }}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="sub-box se-praktilkplatser-inom prt_1 active">
-                                                    <h3>Personlinligt brev</h3>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <div class="sub-box se-praktilkplatser-inom prt_1">
+                                                    <h3 style="margin: 0 auto;">Personlinligt brev</h3>
                                                     <input type="file"
-                                                                    class="custom-file-input link Praktil-link hvr-bs animated active form-control"
+                                                           style="margin: 0 auto;"
+                                                                    class="custom-file-input form-control"
                                                                     name="letter" id="letter"
                                                                     placeholder="Example input" value="{{ user.letter }}">
                                                 </div>
@@ -207,9 +209,9 @@
                                                         <input type="text" id="email" name="email" placeholder="{{ user.email }}" value="{{ user.email }}">
                                                     </li>
                                                     <li><label>Nytt Lösenord</label>
-                                                        <input type="text" id="password" name="password" placeholder="" required ></li>
+                                                        <input type="password" id="password" name="password" placeholder="" required ></li>
                                                     <li><label>bekräfta Nytt Lösenord</label>
-                                                        <input type="text" name=""></li>
+                                                        <input type="password" name=""></li>
                                                 </ul>
                                                 <button type="submit" class="btn">Ändra Lösendord</button>
                                             </form>

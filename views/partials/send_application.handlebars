@@ -6,14 +6,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h1>Du kommer nu söka med din profile</h1>
-            </div>
-            <div class="modal-body">
                 <h5 class="modal-title" id="modalinside">Du söker tjänsten</h5>
                 <h7 class="modal-title" id="modalinside">{{ job.name }}</h7>
                 <p>{{ job.description }}</p>
                 <form action="/send/application" method="POST">
                     <input type="hidden" id="id" name="id" value="{{ job._id }}">
-                    <button type="submit" class="btn">Ansök nu</button>
+                    <button type="submit" class="Praktil-link-3" style="margin: 10px 0; width: 100%">Ansök nu</button>
                 </form>
             </div>
         </div>

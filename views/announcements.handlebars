@@ -21,7 +21,7 @@
               </div>
             
             <div class="data-jobb">
-              <div class="panel-group">
+             <!-- <div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -39,9 +39,53 @@
                       <a class="link active" href="#">Juridik</a></div>
                   </div>
                 </div>
-              </div>
+              </div>-->
 
-              <div class="panel-group">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <div>
+                                    <select name="selectedCat" id="selectedCat">
+                                        <option value="" selected>Kategori</option>
+                                        <option value="0">Kommunikation</option>
+                                        <option value="">Data/IT</option>
+                                        <option value="">Ekonomi</option>
+                                        <option value="">Skapa Service</option>
+                                        <option value="">Se Pedagogik</option>
+                                        <option value="">Vård &amp; Omsorg</option>
+                                        <option value="">Rekrytering</option>
+                                        <option value="">Juridik</option>
+                                    </select>
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <div>
+                                    <select name="selectedCat" id="selectedCat">
+                                        <option value="" selected>Min plats</option>
+                                        <option value="0">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                        <option value="">Stockholm</option>
+                                    </select>
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+              <!--<div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -64,9 +108,35 @@
 
                   </div>
                 </div>
-              </div>
+              </div>-->
 
-              <div class="panel-group">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#datum">Datum <span><i class="fas fa-caret-down"></i></span></a>
+                            </h4>
+                        </div>
+                        <div id="datum" class="panel-collapse collapse">
+                            <div>
+                                <p>Mellan vilka datum söker du praktik?</p>
+                                <div class='date' id='ansokningsdatum-datum' style="float: none">
+                                    <div class="sd-container"  style="float: none; width: 70%; margin-left: 10%; margin-bottom: 10px">
+
+                                        <input type='date' name="deadline" id="deadline" class="sd" />
+                                        <span class="open-button">
+                                                            <button type="button"><i
+                                                                    class="fas fa-calendar-alt"></i></button>
+                                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+              <!--<div class="panel-group">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -84,7 +154,7 @@
                   </div>
                 </div>
 
-              </div>
+              </div>-->
               <div class="clear"></div>
 
               <footer>
@@ -133,26 +203,6 @@
               </div>
             </div>
             {{/forEach }}
-            <div class="results-box">
-              <div class="box-left">
-                <h4>Test</h4>
-                <p>test</p>
-
-                <footer>
-                  <ul>
-                    <li><span><i class="fas fa-user"></i></span>3</li>
-                    <li><span><i class="fas fa-map-marker-alt"></i></span>NYC</li>
-                    <li><span><i class="far fa-calendar-alt"></i></span>24 - February - 2019</li>
-                  </ul>
-                </footer>
-              </div>
-              <div class="box-right">
-                <img src="system/posts/images/000/000/002/medium/previewba46.html?1551035098" />
-                <a href="info/1.html">/info/1</a>
-                <a class="btn" href="posts/2.html">Läs mer</a>
-
-              </div>
-            </div>
           </article>
 
         </div>
