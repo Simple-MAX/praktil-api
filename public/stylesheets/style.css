@@ -3642,6 +3642,7 @@
         /* 3.3 Service */
 
         .h3-service-area {
+            position: relative;
             padding: 0px 0 0px;
             margin: -100px 0 100px
         }
@@ -5685,7 +5686,7 @@
         .owl-stage .service-box-4 {margin:0px;}
         .owl-stage .content .title {color:#202E55;font-size:22px;line-height:30px;}
         .owl-stage .content p {color:#A5AFC3;font-size:13px;line-height:18px;}
-        .h1ftaw-subscribe {position:absolute;bottom:0%;}
+        .h1ftaw-subscribe {position:relative;bottom:0%;}
         .h1ftaw-subscribe .footer-subscribe-box input[type="text"]::placeholder, .h1ftaw-subscribe .footer-subscribe-box textarea::placeholder {color:#86CBFF;}
         .has-search input {max-width:100%;}
         .XX h2.title{background-color:#EDF4FA!important;font-size:25px;padding:15px;}

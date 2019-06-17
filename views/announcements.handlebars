@@ -214,6 +214,8 @@
 
 
 <!-- h3-what-we-area-start -->
+    {{#if isUser}}
+    {{else}}
     <div class="h3-what-we-area">
       <div class="h3-what-we-banner"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930.813 549.796">
         <defs>
@@ -524,18 +526,19 @@
         </g>
       </svg>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-5 col-md-7 col-sm-12 col-12">
-            <div class="section-title">
-              <h6 class="intro">Praktil är en digital plattform som hjälper dig
-                få dina första arbetslivserfarenheter</h6>
-              <a class="link Praktil-link-3 hvr-bs animated" href="#">Skapa konto</a>
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-7 col-sm-12 col-12">
+                    <div class="section-title">
+                        <h6 class="intro">Praktil är en digital plattform som hjälper dig
+                            få dina första arbetslivserfarenheter</h6>
+                        <a class="link Praktil-link-3 hvr-bs animated" href="#">Skapa konto</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
+        </div>
+        {{/if}}
 
 <!-- h3-what-we-area-end -->
   

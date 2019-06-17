@@ -1,0 +1,144 @@
+.header-bg {
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    background: rgba(32, 46, 85, 1) none repeat scroll 0 0;
+    border-bottom: medium none;
+    -webkit-box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.75);
+    left: 0;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 992;
+}
+
+.group {
+    align-items: self-start;
+}
+
+.card {
+    border: 1px solid #E6EEF7;
+    border-radius: 20px;
+}
+
+.card-position {
+    margin: -100px 0 100px;
+    z-index: 100;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.card-btn {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin: 5px;
+
+    background: #EDF4FA;
+    color: #2A8DD8;
+
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.card-btn a{
+    margin: 10px;
+}
+
+.selectable:hover {
+    background: #2A8DD8;
+    color: white;
+}
+
+.selectable:active{
+    background: #2A8DD8;
+    color: white;
+}
+
+
+/* small screen size */
+@media only screen and (max-width: 375px) {
+
+    .h3-what-we-area .section-title .intro {
+        color: #fff;
+        font-size: 26px;
+        line-height: normal;
+    }
+    .h3-what-we-area .section-title  {padding: 55px 0}
+
+    .section-title .intro {
+        margin-top: 30px;
+        font-size: 20px;
+    }
+    .what-we-list {
+        list-style: outside none none;
+        padding: 0;
+    }
+
+    .what-we-list li {
+        color: #2A8DD8;
+        display: block;
+        font-size: 10px;
+        overflow:visible;
+        white-space: nowrap;
+        letter-spacing: 0;
+        line-height: normal;
+        padding: 0 0 0 34px;
+        position: relative;
+    }
+
+    .what-we-list li::before {
+
+        border-radius: 100px;
+        color: #FF793F;
+        content: "";
+        font-family: "Font Awesome 5 Free";
+        font-size: 10px;
+        font-weight: 900;
+        height: 20px;
+        left: 0;
+        line-height: 18px;
+        position: absolute;
+        text-align: center;
+        top: 3px;
+        width: 20px;
+    }
+
+    .what-we-list li:last-child {
+        margin-bottom: 0;
+    }
+
+    .h3-slider-box .content .title h2{
+        font-size: 10px;
+    }
+
+    .h3-slider-box .content .title span{
+        font-size: 30px;
+    }
+
+    .h3-slider-box .content .title a{
+        font-size: 10px;
+    }
+
+    .card-position {
+        margin: 10px 0;
+    }
+}
