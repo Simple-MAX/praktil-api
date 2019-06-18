@@ -77,8 +77,32 @@
     font-size: 20px;
 }
 
+.btn-outline a.btn-outline, a.btn-outline {
+    border: 4px solid #ec804e;
+    color: #ec804e;
+    width: 100%;
+    font-size: 20px;
+}
+
 /* small screen size */
 @media only screen and (max-width: 375px) {
+
+    .dashboard-main-X {
+        width: 100%;
+    }
+
+
+    .main-X-footer .results-box {
+        width: 100%;
+    }
+
+    .results-box .box-left footer {
+        position: relative;
+    }
+
+    .main-X-footer .results-box {
+        margin-left: 0;
+    }
 
     .h3-what-we-area .section-title .intro {
         color: #fff;

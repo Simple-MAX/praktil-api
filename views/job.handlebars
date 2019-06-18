@@ -1,140 +1,188 @@
 <div data-spy="scroll" data-target="#scroll-menu" data-offset="65" class="dashboard">
-  <!-- ===================================================
-        Loading Transition
-    ==================================================== -->
-  <div id="loader-wrapper">
-    <div id="loader"></div>
-  </div>
-  <!-- header-area-start -->
-  {{> header}}
-  <div class="h3-slider-area owl-carousel">
-    <div class="h3-slider-box-X">
-      <div class="img bg-with-black fishy">
-        <img src="../{{job.jobImage}}" alt="">
-      </div>
-
+    <!-- ===================================================
+          Loading Transition
+      ==================================================== -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
     </div>
-  </div>
-  <!-- header-area-end -->
+    <!-- header-area-start -->
+    {{> header}}
+    <div class="h3-slider-area owl-carousel">
+        <div class="h3-slider-box-X">
+            <div class="img bg-with-black fishy">
+                <img src="../{{job.jobImage}}" alt="">
+            </div>
 
-  <div class="dashboard-main-X ">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-12">
-          <div class="left">
-            <article>
-              <header>
-                <div class="f1logo">
-                  <img src="../{{ company.image }}" alt="" class="main-x">
+        </div>
+    </div>
+    <!-- header-area-end -->
+
+    <div class="dashboard-main-X ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="left">
+                        <article>
+                            <header>
+                                <div class="f1logo">
+                                    <img src="../{{ company.image }}" alt="" class="main-x">
+                                </div>
+                            </header>
+                            <div class="main-X-one">
+                                <h5>Arbetsgivare</h5>
+                                <h6>{{ company.name }}</h6>
+                            </div>
+                            <div class="main-X-two">
+                                <h5>Ort</h5>
+                                <h6>{{ job.location }}</h6>
+                            </div>
+                            <div class="main-X-three">
+                                <h5>Antal platser</h5>
+                                <h6>1/{{ job.availability }}</h6>
+                            </div>
+                            <div class="main-X-four">
+                                <h5>Ansökning</h5>
+                                <h6>Senast {{date deadline "YYYY-MM-DD"}}</h6>
+                            </div>
+                            <footer>
+                                <a class="btn" href="#send" data-toggle="modal"
+                                   data-target="#send">Ansök nu</a>
+                                <a class="btn" id="btn-two" style="color: #ec804e; background: transparent; border: 4px solid #ec804e;" >Spara</a>
+                            </footer>
+                        </article>
+                    </div>
                 </div>
-              </header>
-              <div class="main-X-one">
-                <h5>Arbetsgivare</h5>
-                <h6>{{ company.name }}</h6>
-              </div>
-              <div class="main-X-two">
-                <h5>Ort</h5>
-                <h6>{{ job.location }}</h6>
-              </div>
-              <div class="main-X-three">
-                <h5>Antal platser</h5>
-                <h6>1/{{ job.availability }}</h6>
-              </div>
-              <div class="main-X-four">
-                <h5>Ansökning</h5>
-                <h6>Senast {{date deadline "YYYY-MM-DD"}}</h6>
-              </div>
-              <footer>
-                <a class="btn" href="#send" data-toggle="modal"
-                                                data-target="#send">Ansök nu</a>
-                <a class="btn" id="btn-two" href="#">Spara</a>
-              </footer>
-            </article>
-          </div>
+
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <h1> {{ job.name }}</h1>
+                    <h3>
+                        <bold>Vi Söker:</bold>
+                    </h3>
+                    <h4>{{ job.looking_for }}
+                    </h4>
+
+
+                    <h3>
+                        <bold>Om tjänsten:</bold>
+                    </h3>
+                    <h4>{{ job.description }}
+                    </h4>
+
+
+                    <h3>
+                        <bold>Krav:</bold>
+                    </h3>
+                    <h5>
+                        <ul>
+                            <li> {{ job.requirement }}</li><br>
+                        </ul>
+                    </h5>
+
+                    <h3>
+                        <bold>Ansökan:</bold>
+                    </h3>
+                    <h4>{{ job.application }}
+                    </h4>
+                </div>
+            </div>
         </div>
+        <div class="main-X-footer">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+            <div class="container">
+            <h2> Liknande praktikplatser</h2>
+            {{#forEach jobs }}
+                <div class="results-box">
+                    <div class="box-left">
+                        <h4>{{ name }}</h4>
+                        <p>{{ description }}</p>
 
-        <div class="col-lg-9 col-md-8 col-sm-12">
-          <h1> {{ job.name }}</h1>
-          <h3>
-            <bold>Vi Söker:</bold>
-          </h3>
-          <h4>{{ job.looking_for }}
-          </h4>
+                        <footer>
+                            <ul>
+                                <li><span><i class="fas fa-user"></i></span>{{ availability }}</li>
+                                <li><span><i class="fas fa-map-marker-alt"></i></span>{{ location }}</li>
+                                <li><span><i class="far fa-calendar-alt"></i></span>{{date will_start_at "YYYY-MM-DD" }}</li>
+                                <li><span><i class="far fa-calendar-alt"></i></span>{{date will_end_at "YYYY-MM-DD" }}</li>
+                                <li><span><i class="far fa-calendar-alt"></i></span>{{date deadline "YYYY-MM-DD" }}</li>
+                            </ul>
+                        </footer>
+                    </div>
+                    <div class="box-right">
+                        <img src="../{{ jobImage }}" class="align-self-end" />
+                        <a href="info/2.html" class="align-self-end">NTI</a>
+                        <a class="btn" href="/announcement/{{ _id }}">Läs mer</a>
 
-
-          <h3>
-            <bold>Om tjänsten:</bold>
-          </h3>
-          <h4>{{ job.description }}
-          </h4>
-
-
-          <h3>
-            <bold>Krav:</bold>
-          </h3>
-          <h5>
-            <ul>
-              <li> {{ job.requirement }}</li><br>
-            </ul>
-          </h5>
-
-          <h3>
-            <bold>Ansökan:</bold>
-          </h3>
-          <h4>{{ job.application }}
-          </h4>
-        </div>
-      </div>
-    </div>
-    <div class="main-X-footer">
-      <div class="container">
+                    </div>
+                </div>
+            {{/forEach }}
+            </div>
+                </div>
+            </div>
+            <!--<div class="container">
         <h2> Liknande praktikplatser</h2>
-        <div class="results-box">
-          <div class="box-left">
-            <h4>Marknadsassistans Internship </h4>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-              Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-              ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim...</p>
-
-            <footer>
-              <ul>
-                <li><span><i class="fal fa-user"></i></span>1/5</li>
-                <li><span><i class="far fa-map-marker-alt"></i></span>Stockholm</li>
-                <li><span><i class="far fa-calendar-alt"></i></span>2018-11-20</li>
-              </ul>
-            </footer>
+          <div class="justify-content-end">
+              <div class="row">
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-12" style="margin-bottom: 20px; margin-top: 20px">
+                      <div class="card w-100" style="border-radius: 5px">
+                          <div class="card-body" style="padding: 25px">
+                              <div class="media">
+                                  <div class="media-body">
+                                      <h4 class="font-weight-bold">Marknadsassistans Internship</h4>
+                                       <p class="font-weight-light">
+                                           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                                           Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+                                           ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim...
+                                       </p>
+                                      <footer style="margin-top: 40px">
+                                          <span style="margin: 20px 10px; font-weight: lighter"><span><i class="fas fa-user"></i></span> {{ job.availability }}/{{ job.availability }}</span>
+                                          <span style="margin: 20px 10px; font-weight: lighter"><span><i class="fas fa-map-marker-alt"></i></span> {{ job.location }}</span>
+                                          <span style="margin: 20px 10px; font-weight: lighter"><span><i class="far fa-calendar-alt"></i></span> {{date job.will_start_at "YYYY-MM-DD" }}</span>
+                                      </footer>
+                                  </div>
+                                  <span style="margin-left: 50px"></span>
+                                  <div class="list-group w-25">
+                                      <img src="../images/allt/aa.png" class="align-self-end w-50" alt="...">
+                                      <a href="#" class="align-self-end" style="margin: 10px 0"> MicroAA Labs AB</a>
+                                      <a href="#" class="btn" style="margin-top: 100px">Läs mer</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div class="box-right">
-            <img src="../images/allt/aa.png" alt="">
-            <a href="#"> MicroAA Labs AB</a>
-            <a href="#" class="btn">Läs mer</a>
+      </div>-->
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="right sub">
+                        {{#forEach job }}
+                            <div class="results-box">
+                                <div class="box-left">
+                                    <h4>{{ name }}</h4>
+                                    <p>{{ description }}</p>
 
-          </div>
+                                    <footer>
+                                        <ul>
+                                            <li><span><i class="fas fa-user"></i></span>{{ availability }}</li>
+                                            <li><span><i class="fas fa-map-marker-alt"></i></span>{{ location }}</li>
+                                            <li><span><i class="far fa-calendar-alt"></i></span>{{date will_start_at "YYYY-MM-DD" }}</li>
+                                            <li><span><i class="far fa-calendar-alt"></i></span>{{date will_end_at "YYYY-MM-DD" }}</li>
+                                            <li><span><i class="far fa-calendar-alt"></i></span>{{date deadline "YYYY-MM-DD" }}</li>
+                                        </ul>
+                                    </footer>
+                                </div>
+                                <div class="box-right">
+                                    <img src="../{{ jobImage }}" />
+                                    <a href="info/2.html">NTI</a>
+                                    <a class="btn" href="/announcement/{{ _id }}">Läs mer</a>
+
+                                </div>
+                            </div>
+                        {{/forEach }}
+                    </div>
+            </div>
+            </div>
         </div>
-        <div class="results-box">
-          <div class="box-left">
-            <h4>Marknadsassistans Internship </h4>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-              Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-              ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim...</p>
-
-            <footer>
-              <ul>
-                <li><span><i class="fal fa-user"></i></span>1/5</li>
-                <li><span><i class="far fa-map-marker-alt"></i></span>Stockholm</li>
-                <li><span><i class="far fa-calendar-alt"></i></span>2018-11-20</li>
-              </ul>
-            </footer>
-          </div>
-          <div class="box-right">
-            <img src="../images/allt/aa.png" alt="">
-            <a > MicroAA Labs AB</a>
-            <a href="#" class="btn">Läs mer</a>
-
-          </div>
-        </div>
-      </div>
+        {{> send_application}}
     </div>
-      {{> send_application}}
-  </div>
 </div>

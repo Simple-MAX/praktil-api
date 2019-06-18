@@ -200,10 +200,12 @@ router.get('/announcements', async (req, res, next) => {
 router.get('/announcement/:announcementID', ensureAuthenticated,async (req, res, next) => {
   jobID = req.params.announcementID;
   const job = await Job.findById(req.params.announcementID);
+  const jobs = await Job.find({ creator: job.creator });
   const company = await User.findById(job.creator);
   res.render('job', {
     isUser: req.user,
     job: job,
+    jobs: jobs,
     company: company
   })
 });
