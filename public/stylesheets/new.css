@@ -73,6 +73,9 @@
     color: white;
 }
 
+.nav-link {
+    font-size: 20px;
+}
 
 /* small screen size */
 @media only screen and (max-width: 375px) {
@@ -126,12 +129,16 @@
         margin-bottom: 0;
     }
 
+    .h2-testimonial-area .section-title .title {
+        font-size: 30px;
+    }
+
     .h3-slider-box .content .title h2{
-        font-size: 10px;
+        font-size: 5px;
     }
 
     .h3-slider-box .content .title span{
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .h3-slider-box .content .title a{
